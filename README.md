@@ -25,15 +25,18 @@ Quantify the inequities in existing clinical trials and provide remedies to impr
 
 
 
-### The idea
+### The solution
 
 
 ## Application
 
-1. The user navigates to the site and uploads a video file.
-2. Watson Speech to Text processes the audio and extracts the text.
-3. Watson Translation (optionally) can translate the text to the desired language.
-4. The app stores the translated text as a document within Object Storage.
+You can run the example studies on [Equity Broswer](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
+
+https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/
+1. 
+2. 
+3. 
+4. 
 
 ### Prerequisites
 
@@ -56,4 +59,4 @@ This project is licensed under the Apache 2 License
 
 ## Acknowledgments
 
-* 
+* This work was primarily funded by IBM Research AI Horizons Network with the Rensselaer Institute for Data Exploration and Applications (IDEA)
