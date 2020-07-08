@@ -32,11 +32,11 @@ Quantify the inequities in existing clinical trials and provide remedies to impr
 
 You can run the example studies on [Equity Broswer](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
 
-https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/
-1. 
-2. 
-3. 
-4. 
+1. Measure inequity in randomized clinical trials
+2. Visualize inequity for subgroups
+3. Compare inequities among studies
+4. Design equitable clinical trials
+5. Correct existing unequitable clinical trials
 
 ### Prerequisites
 
