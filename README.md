@@ -8,9 +8,9 @@ Quantify the inequities in existing clinical trials and provide remedies to impr
 ## Contents
 
 1. [Description](#description)
-1. [Application](#application)
+1. [Visualization Tool](#tool)
 1. [Sample Results](#sample-results)
-1. [Versioning](#versioning)
+1. [Statistical Results](#statistical-results)
 1. [Authors](#authors)
 1. [License](#license)
 1. [Acknowledgments](#acknowledgments)
@@ -28,23 +28,23 @@ Quantify the inequities in existing clinical trials and provide remedies to impr
 ### The solution
 
 
-## Application
+## Visualization Tool
 
-You can run the example studies on [Equity Broswer](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
+You can run the example studies on [Equity Visualization Tool](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
 
 1. Measure inequity in randomized clinical trials
 2. Visualize inequity for subgroups
 3. Compare inequities among studies
-4. Design equitable clinical trials
-5. Correct existing unequitable clinical trials
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+What things you need to install the software and how to install them:
+1. A software/server that can run R shiny codes
 
 
+## Sample Visualization
 
-## Sample results
+## Statistical Results
 
 
 ## Versioning
