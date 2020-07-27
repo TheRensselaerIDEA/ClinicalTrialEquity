@@ -102,7 +102,7 @@ The results are available in the folder Statistical Results for Example Studies 
 <!-- CONTACT -->
 ## Contact
 
-Miaoa Qi  - qim@rpi.edu
+Miao Qi  - qim@rpi.edu
 
 Project Link: [ClinicalTrialEquity](https://github.com/TheRensselaerIDEA/ClinicalTrialEquity)
 
