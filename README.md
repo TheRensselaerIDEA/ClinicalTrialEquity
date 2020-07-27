@@ -5,18 +5,19 @@
 
 Quantify the inequities in existing clinical trials and provide remedies to improve the clinical trial equity and health equity
 
+<!-- TABLE OF CONTENTS -->
 ## Contents
 
 1. [Description](#description)
-1. [Visualization Tool](#tool)
-1. [Example_RCTs](#example_rcts)
+1. [Visualization Tool](#visualization-tool)
+1. [Example_RCTs](#example-rcts)
 1. [Sample Visualization](#sample-visualization)
 1. [Statistical Results](#statistical-results)
-1. [Authors](#authors)
+1. [Contact](#contact)
 1. [License](#license)
 1. [Acknowledgments](#acknowledgments)
 
-
+<!-- ABOUT THE PROJECT -->
 ## Description
 We develop randomized clinical trial (RCT) inequity metrics based on Machine Learning Fairness Research. Visualizations and statistical tests based on proposed metrics enable researchers and physicians to rapidly visualize and assess potential inequities in RCTs for subgroups. The approach enables users to determine underrepresentation of subgroups indicating potential limitations of RCTs. The method could help support evaluation of existing RCTs, design of new RCTs, monitoring of RCT recruitment, and applicability of RCT results to patients.
 
@@ -98,9 +99,12 @@ Subgroup data of ACCORD, ALLHAT, and SPRINT are summarised with the subgroups' c
 
 The results are available in the folder Statistical Results for Example Studies as csv files.
 
-## Authors
+<!-- CONTACT -->
+## Contact
 
-* **Miao Qi** 
+Miaoa Qi  - qim@rpi.edu
+
+Project Link: [ClinicalTrialEquity](https://github.com/TheRensselaerIDEA/ClinicalTrialEquity)
 
 ## License
 
