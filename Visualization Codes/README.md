@@ -1,4 +1,4 @@
-<a href="https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/"><img src="interface.JPG" title="Equity Visualization Tool"></a>
+<a href="https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/"><img src="interface.JPG" alt= "Equity Visualization Tool" title="Equity Visualization Tool"></a>
 
 ***Equity Visualization Tool***
 
