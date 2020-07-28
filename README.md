@@ -55,7 +55,7 @@ We apply the proposed RCT equity metrics to three landmark clinical trials relea
 
 ## Sample Visualization
 <p align="center">
-  <img width="50%" height="auto" src="distribution_age_race.jpg">
+  <img width="50%" height="auto" src="distribution_age_race.png">
 </p>
 <p align="center">
 The distributions of subgroups defined over age and race/ethnicity in both target population and ACCORD.
