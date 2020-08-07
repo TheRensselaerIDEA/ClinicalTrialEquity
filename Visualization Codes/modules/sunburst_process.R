@@ -110,7 +110,7 @@ generate_sunburst_df<-function(background_df,variables_list,user_data_analysis,s
   return(new_df)
 }
 
-generate_sunburst_plotly<-function(new_df){ 
+generate_sunburst_plotly<-function(new_df, given_width = NULL){ 
   plot_ly(data= new_df,source = "sunSource")%>% add_trace(
     type='sunburst',
     ids=new_df$ids,
@@ -121,9 +121,15 @@ generate_sunburst_plotly<-function(new_df){
     marker = list(colors = new_df$EquityColors),
     insidetextorientation='radial',
     hovertext = ~paste(new_df$EquityLable,'</br>','Ideal Rate:', new_df$Ideal_Rate,'</br>','Observed Rate:', new_df$Observed_Rate),
-    insidetextfont  = 2
-  )
+    insidetextfont  = 2)%>% 
+    layout(
+      grid = list(columns = 1, rows = 1),
+      margin = list(l = 0, r = 0, b = 0, t = 0),
+      autosize = FALSE, width = given_width, height = given_width
+      )
+  
 }
+
 
 
 segments_calculation<-function(l1,l2,u1,u2,given_p, function_real,seg_length){
@@ -135,7 +141,7 @@ segments_calculation<-function(l1,l2,u1,u2,given_p, function_real,seg_length){
   a<-c(0,0,0,0)
   for (i in x){
     if (function_real(given_p, i, TRUE) >= l1 & find_l1 ){
-      print(paste0("l1 = ", i))
+      #print(paste0("l1 = ", i))
       a[1]<-i-seg_length
       find_l1 = FALSE
     }
@@ -160,7 +166,7 @@ segments_calculation<-function(l1,l2,u1,u2,given_p, function_real,seg_length){
 }
 
 
-sun_plot_process<-function(function_name,subgroup_detail,function_real,cut1,cut2,cut3,cut4,sig_cut,alpha_subgroup,beta_subgroup,whether_equitable = '',seg_length,ylimit = TRUE){
+sun_plot_process<-function(function_name,subgroup_detail,function_real,cut1,cut2,cut3,cut4,sig_cut,alpha_subgroup,beta_subgroup,whether_equitable = '',seg_length, ylimit = TRUE, given_xlimit, given_ylimit){
   
   if (alpha_subgroup == 0){
     print("Insufficient Background Information !")
@@ -172,20 +178,22 @@ sun_plot_process<-function(function_name,subgroup_detail,function_real,cut1,cut2
   
   y_subgroup<-function_real(alpha_subgroup,x_subgroup,TRUE)
   
-  if (ylimit){
-    ylim(-5,5)
-    plot(x_subgroup,y_subgroup,
-         main=paste0(function_name, " for ", subgroup_detail),
-         ylab="\u03C4 = Metric Value",xlab ="Observed rate",
-         type="l",col="black",lwd = 1.5,ylim=c(-5.0,5.0))
+  if ((given_ylimit==c(0,0))[1] & (given_ylimit==c(0,0))[2]  ){
+    if (ylimit){
+      given_ylimit <-c(-5,5)
+    }
+    else{
+      given_ylimit <-c(-5,10)
+    }
   }
-  else{
-    ylim(-2,10)
-    plot(x_subgroup,y_subgroup,
-         main=paste0(function_name, " for ", subgroup_detail),
-         ylab="\u03C4 = Metric Value",xlab ="Observed rate",
-         type="l",col="black",lwd = 1.5,ylim=c(-2.0,10.0))
-  }
+
+  
+  
+  plot(x_subgroup,y_subgroup,
+       main=paste0(function_name, " for ", subgroup_detail),
+       ylab="\u03C4 = Metric Value",xlab ="Observed rate",
+       type="l",col="black",lwd = 1.5,xlim=given_xlimit,ylim=given_ylimit)
+
   
   
   x_vert <-segs[1]/seg_length
@@ -197,7 +205,6 @@ sun_plot_process<-function(function_name,subgroup_detail,function_real,cut1,cut2
   
   #y_limit_user<-floor(max(min(y_subgroup[2:last_index]),-5))
   y_limit_user<-floor(min(y_subgroup[2:last_index]))
-  print(y_limit_user)
   polygon(x = c(x_subgroup[1:x_vert],x_subgroup[x_vert], 0), 
           y = c(y_subgroup[1:x_vert],y_limit_user,y_limit_user),
           col = "#d58570")
@@ -235,6 +242,6 @@ sun_plot_process<-function(function_name,subgroup_detail,function_real,cut1,cut2
            paste0("Equitable (",round(cut2,2),"\u2264 \u03C4<",round(cut3,2)," or p>",round(sig_cut,2),")"),
            paste0("Overrepresented (",round(cut3,2),"\u2264 \u03C4<",round(cut4,2),")"),
            paste0("Highly Overrepresented (",round(cut4,2),"\u2264\u03C4)")),
-         fill=c("#54585a","#000000","#ab2328","#d58570","#eabcad","#ffffff","#a5b0cb","#00205b"), horiz=FALSE, cex=1)
+         fill=c("#54585a","#000000","#ab2328","#d58570","#eabcad","#ffffff","#a5b0cb","#00205b"), horiz=FALSE, cex=0.75)
 
 }
