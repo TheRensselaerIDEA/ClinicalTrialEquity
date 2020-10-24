@@ -7,10 +7,10 @@ source("modules/studies_comparison.R")
 
 ui <- dashboardPage(
   skin = "black",
-  title = "RCT Equity Visualization Supplementary",
+  title = "RCT Equity Visualization Supplement",
   
   # HEADER ------------------------------------------------------------------
-  dashboardHeader(title =  span(img(src="RPI.png", width = 50, height=50),a("RCT Equity Visualization Supplementary",href="https://github.com/TheRensselaerIDEA/ClinicalTrialEquity/blob/master/README.md#visualization-tool", target="_blank"), 
+  dashboardHeader(title =  span(img(src="RPI.png", width = 50, height=50),a("RCT Equity Visualization Supplement",href="https://github.com/TheRensselaerIDEA/ClinicalTrialEquity/blob/master/README.md#visualization-tool", target="_blank"), 
                                 style = "color: #000000; font-size: 20px; font-weight: bold"),titleWidth = 450),
   
   # SIDEBAR -----------------------------------------------------------------
@@ -205,10 +205,10 @@ ui <- dashboardPage(
   ,
     tabItems(
       tabItem(tabName = "aboutEquityBrowser",
-              tags$h1("WELCOME TO RCT EQUITY VISUALIZATION SUPPLEMENTARY"),
+              tags$h1("WELCOME TO RCT EQUITY VISUALIZATION SUPPLEMENT"),
               tags$h2("Introduction"),
               tags$p("This ",
-                tags$span("RCT Equity Visualization Supplementary", style = "color:teal"),
+                tags$span("RCT Equity Visualization Supplement", style = "color:teal"),
                 " has been designed to aid in the quantification of the inequities in existing clinical trials 
               and provide insights to improve the clinical trial equity and health equity. It is part of the supplementary materials for the paper", tags$em(" Quantifying Inequities in Randomized Clinical Trials using Fairness Metrics. "),
               "This tool allows the user to select a sample randomized clinical trial (RCT) for inequity analysis, and then visualize the equity levels of diffreent 
