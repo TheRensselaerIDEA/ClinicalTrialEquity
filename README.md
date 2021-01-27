@@ -5,6 +5,8 @@
 
 Quantify the inequities in existing clinical trials and provide insights to improve the clinical trial equity and health equity
 
+**Note: The RCT Equity Visualization Supplement is updated.**
+
 <!-- TABLE OF CONTENTS -->
 ## Contents
 
@@ -36,7 +38,7 @@ We compare the observed rate in the RCT for the subgroup to the hypothetical ide
 
 ## Visualization Tool
 
-You can run the example studies on [**RCT Equity Visualization Supplement**](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
+You can run the example studies on [**RCT Equity Visualization Supplement**](https://miao-qi-rpi-app.shinyapps.io/updated_RCT_Equity_visualization_tool/). The original version is [**here**](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
 
 The tool can
 1. Measure inequity in randomized clinical trials
@@ -67,7 +69,7 @@ It demonstrates the distributions of patients from different age and race/ethnic
 
 
 <p align="center">
-  <img width="50%" height="auto" src="color_description.jpg">
+  <img width="50%" height="auto" src="color_description.JPG">
 </p>
 <p align="center">
 <em>Color representation of inequity levels</em>
