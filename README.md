@@ -38,7 +38,7 @@ We compare the observed rate in the RCT for the subgroup to the hypothetical ide
 
 ## Visualization Tool
 
-You can run the example studies on [**RCT Equity Visualization Supplement**](https://miao-qi-rpi-app.shinyapps.io/updated_RCT_Equity_visualization_tool/). The original version is [**here**](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
+You can run the example studies on [**RCT Equity Visualization Supplement 2020**](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
 
 The tool can
 1. Measure inequity in randomized clinical trials
