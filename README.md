@@ -5,7 +5,7 @@
 
 Quantify the inequities in existing clinical trials and provide insights to improve the clinical trial equity and health equity
 
-**Note: The RCT Equity Visualization Supplement has been updated since Auguest, 2020. Some colors and the user interface are modified in the new 2021 version compared to the 2020 version.**
+**Note: The RCT Equity Visualization Supplement has been updated since Auguest, 2020. Some colors and the user interface are modified in the new 2021 version compared to the 2020 version. The interface and colors are updated in the 2021 version.**
 
 <!-- TABLE OF CONTENTS -->
 ## Contents
@@ -57,7 +57,7 @@ What things you need to install the software and how to install them:
 ## Example RCTs
 We apply the proposed RCT equity metrics to three landmark clinical trials released in the last decade: Action to ControlCardiovascular Risk in Diabetes (**ACCORD**), Antihypertensive and Lipid-Lowering Treatment to Prevent Heart AttackTrial(**ALLHAT**), and Systolic Blood Pressure Intervention Trial (**SPRINT**). All patient data are obtained through the [BiologicSpecimen and Data Repositories Information Coordinating Center (BioLINCC)](https://biolincc.nhlbi.nih.gov/home/).
 
-## Sample Visualization
+## Sample Visualization for RCT Equity Visualization Supplement 2021
 <p align="center">
   <img width="50%" height="auto" src="distribution_age_race.jpg">
 </p>
