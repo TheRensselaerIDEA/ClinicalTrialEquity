@@ -5,7 +5,7 @@
 
 Quantify the inequities in existing clinical trials and provide insights to improve the clinical trial equity and health equity
 
-**Note: The RCT Equity Visualization Supplement has been updated since Auguest, 2020. Some colors and the user interface are modified in the new 2021 version compared to the 2020 version. The interface and colors are updated in the 2021 version.**
+**Note: The RCT Equity Visualization Supplement has been updated since Auguest, 2020. Some colors and the user interface are modified in the new 2021 version compared to the 2020 version.**
 
 <!-- TABLE OF CONTENTS -->
 ## Contents
