@@ -57,7 +57,7 @@ What things you need to install the software and how to install them:
 ## Example RCTs
 We apply the proposed RCT equity metrics to three landmark clinical trials released in the last decade: Action to ControlCardiovascular Risk in Diabetes (**ACCORD**), Antihypertensive and Lipid-Lowering Treatment to Prevent Heart AttackTrial(**ALLHAT**), and Systolic Blood Pressure Intervention Trial (**SPRINT**). All patient data are obtained through the [BiologicSpecimen and Data Repositories Information Coordinating Center (BioLINCC)](https://biolincc.nhlbi.nih.gov/home/).
 
-## Sample Visualization for RCT Equity Visualization Supplement 2021
+## Updated Sample Visualization for RCT Equity Visualization Supplement 2021
 
 We update the RCT Equity Visualization Supplement from version 2020 to version 2021 to optimize for ADA compliance. The same example studies and functions are used in [**RCT Equity Visualization Supplement 2021**](https://miao-qi-rpi-app.shinyapps.io/updated_RCT_Equity_visualization_tool/).
 
