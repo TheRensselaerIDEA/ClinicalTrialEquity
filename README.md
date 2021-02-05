@@ -69,7 +69,7 @@ We update the RCT Equity Visualization Supplement from version 2020 to version 2
 <em>The distributions of subgroups defined over age and race/ethnicity in both target population and ACCORD</em>
 </p>
 
-It demonstrates the distributions of patients from different age and race/ethnicity groups in the RCT ACCORD and the target population. This figure clearly identifies that young patients are missing from the clinical trial. Also, the higher red bin shows that the subgroup may be overrepresented in the RCT (e.g. Non-Hispanic white subjects age 45-64), while the higher green bin shows that the subgroup has the potential to be underrepresented in the RCT (e.g. Hispanic participants age 45-64). The wider green bin means that the subgroup is missing from the clinical trial (e.g. Non-Hispanic white patients age 18-44).
+It demonstrates the distributions of patients from different age and race/ethnicity groups in the RCT ACCORD and the target population. This figure clearly identifies that young patients are missing from the clinical trial. Also, the higher red bin shows that the subgroup may be overrepresented in the RCT (e.g. non-Hispanic white subjects age 45-64), while the higher green bin shows that the subgroup has the potential to be underrepresented in the RCT (e.g. Hispanic participants age 45-64). The wider green bin means that the subgroup is missing from the clinical trial (e.g. non-Hispanic white patients age 18-44).
 
 
 <p align="center">
@@ -85,7 +85,7 @@ In our visualization, grey indicates that no people with selected protected attr
   <img width="50%" height="auto" src="interactive_1.jpg">
 </p>
 <p align="center">
-<em>The Log Disparate Impact equity levels of subgroups defined over race/ethnicity, gender, education, and age and the corresponding function of observed rate for subgroup Non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower equity threshold = 0.2, and upper equity threshold = 0.4.</em>
+<em>The Log Disparate Impact equity levels of subgroups defined over race/ethnicity, gender, education, and age and the corresponding function of observed rate for subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower equity threshold = 0.2, and upper equity threshold = 0.4.</em>
 </p>
 
 This figure presents the equity levels of subgroups defined by race/ethnicity, gender, education, and age from the inner ring to the outer ring using the Log Disparate Impact metric. By hovering the pointer over the target subgroup areas on the sunburst, the equity label, ideal rate, and observed rate of the subgroups will show on the screen. Additionally, the corresponding math function of observed rates will also show on the side. The green line indicates the ideal rate and the brown line indicates the current RCT observed rate on the figure.
@@ -95,10 +95,10 @@ This figure presents the equity levels of subgroups defined by race/ethnicity, g
   <img width="50%" height="auto" src="interactive_2.jpg">
 </p>
 <p align="center">
-<em>The Quality Metric equity levels of subgroups defined over race/ethnicity, gender, education, and age and the corresponding function of observed rate for subgroup Non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower equity threshold = 0.2, and upper equity threshold = 0.4.</em>
+<em>The Quality Metric equity levels of subgroups defined over race/ethnicity, gender, education, and age and the corresponding function of observed rate for subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower equity threshold = 0.2, and upper equity threshold = 0.4.</em>
 </p>
 
-For the same subgroups, we apply the Quality Metric, and Adjusted Equal Opportunity separately. This is an example visualization using the Quality Metric on the subgroup Non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD. Using the same thresholds, we can observe that some subgroups such as the Non-Hispanic white participants are with different equity labels. Instead of being overrepresented as shown in the Log Disparate Impact figure, the subgroup is considered to be equitable using the Quality Metric.
+For the same subgroups, we apply the Quality Metric, and Adjusted Equal Opportunity separately. This is an example visualization using the Quality Metric on the subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD. Using the same thresholds, we can observe that some subgroups such as the non-Hispanic white participants are with different equity labels. Instead of being overrepresented as shown in the Log Disparate Impact figure, the subgroup is considered to be equitable using the Quality Metric.
 
 
 ## Statistical Results
