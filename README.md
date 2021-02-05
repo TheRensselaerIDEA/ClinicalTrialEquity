@@ -13,7 +13,7 @@ Quantify the inequities in existing clinical trials and provide insights to impr
 1. [Description](#description)
 1. [Visualization Tool](#visualization-tool)
 1. [Example RCTs](#example-rcts)
-1. [Sample Visualization](#sample-visualization)
+1. [Sample Visualization](#updated-sample-visualization-for-RCT-Equity-Visualization-Supplement-2021)
 1. [Statistical Results](#statistical-results)
 1. [Contact](#contact)
 1. [License](#license)
