@@ -590,13 +590,17 @@ server <- function(input, output, session){
   output$user_var_order <- renderUI({
     # Get the data set with the appropriate name
     colnames <- input$vars_display_sundb
-    orderInput(inputId = "vars_sundb_order", label= "Variable Order: inner - outer (Drag and drop the strings to reorder)", items  = colnames)
+    #print("colnames")
+    #print(colnames)
+    orderInput(inputId = "vars_sundb", label= "Variable Order: inner - outer (Drag and drop the strings to reorder)", items  = colnames)
   })
   
   select_appropriate_background_df_sunburst<-reactive({
     TC_exist<- "TC_L" %in% input$vars_display_sundb 
     FPG_exist<- "FPG_L" %in% input$vars_display_sundb
     n<-length(input$vars_display_sundb)
+    
+    #print(input$vars_display_sundb)
     
     if ((!TC_exist) & (!FPG_exist) ){
       df_background<-df_upload_background()
@@ -607,13 +611,14 @@ server <- function(input, output, session){
     else{
       df_background<-df_upload_background_combined()
     }
-    
     return(df_background)
   })
   
   df_generate_sunburst <- reactive({
     user_data <- df_upload()
     background_data <- select_appropriate_background_df_sunburst()
+    
+    
     if (input$equity_metrics == "DI_metric"){
       df_processed <-generate_sunburst_df(background_data,as.list(input$vars_sundb_order),user_data,input$significance_cutoff,-log(1-input$equity_cutoff1),-log(1-input$equity_cutoff2),Log_Disparate_Impact, FALSE)
 
@@ -626,6 +631,7 @@ server <- function(input, output, session){
       df_processed <-generate_sunburst_df(background_data,as.list(input$vars_sundb_order),user_data,input$significance_cutoff,-log(1-input$equity_cutoff1),-log(1-input$equity_cutoff2),Quality_Metric, FALSE)
       
     }
+    
     return(df_processed)
   })
   
@@ -840,7 +846,7 @@ server <- function(input, output, session){
     df_demo_comparison$`ALLHAT Equity`<-as.numeric(df_demo_comparison$`ALLHAT Equity`)
     df_demo_comparison$`SPRINT Equity`<-as.numeric(df_demo_comparison$`SPRINT Equity`)
     
-    format_table (df_demo_comparison, 
+    demo_result<-format_table (df_demo_comparison, 
                   align =c("l","c","c","c"), 
                   list(
                     `ACCORD Equity`= formatter("span",
@@ -872,6 +878,9 @@ server <- function(input, output, session){
       pack_rows("Age group (Diabetes/Hypertension, years)", 3,5)%>%
       pack_rows("Race/Ethnicity", 6,10) %>%
       pack_rows("Education", 11,14)
+    
+    
+      gt::html(demo_result)
   })
   
   
@@ -889,7 +898,7 @@ server <- function(input, output, session){
     df_clinical_comparison$`ALLHAT Equity`<-as.numeric(df_clinical_comparison$`ALLHAT Equity`)
     df_clinical_comparison$`SPRINT Equity`<-as.numeric(df_clinical_comparison$`SPRINT Equity`)
     
-    format_table (df_clinical_comparison, 
+    clinical_result<-format_table (df_clinical_comparison, 
                   align =c("l","c","c","c"), 
                   list(
                     `ACCORD Equity`= formatter("span",
@@ -922,6 +931,8 @@ server <- function(input, output, session){
       pack_rows("Systolic blood pressure (mm Hg)", 7,10)%>%
       pack_rows("Total cholesterol", 11,12)%>%
       pack_rows("Fasting glucose (mg/dl) ", 13,15)
+    
+    gt::html(clinical_result)
   })
   
   

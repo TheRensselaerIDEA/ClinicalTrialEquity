@@ -1,12 +1,17 @@
 generate_sunburst_df<-function(background_df,variables_list,user_data_analysis,sig_t,tol_1, tol_2,equity_metric_selected, whether_NMI){
   num_variables_df<-length(variables_list)
   
+  #print(background_df)
+  #print(user_data_analysis)
+  #print(variables_list)
   background_info_df<- background_df %>%
     group_by(.dots = variables_list[1:num_variables_df]) %>% 
     summarise(background_n = sum(background_n))
+  
   background_info_df<-na.omit(background_info_df)
   total_population_background<- sum(background_info_df$background_n)
   background_info_df$total_background<-rep(total_population_background, nrow(background_info_df))
+  
   
   user_info_df<- user_data_analysis %>%
     group_by(.dots = variables_list[1:num_variables_df]) %>% 
@@ -44,7 +49,11 @@ generate_sunburst_df<-function(background_df,variables_list,user_data_analysis,s
     
   }
   
+  #print("background_info_df")
+  #print(background_info_df)
   
+  #print("user_info_df")
+  #print(user_info_df)
   #combine user input data with the background info
   merged_df<-merge(background_info_df, user_info_df, by=1:(ncol(background_info_df)-2), all=TRUE)
   
@@ -76,6 +85,8 @@ generate_sunburst_df<-function(background_df,variables_list,user_data_analysis,s
   
   num_groups<-nrow(merged_df)
   
+  #print(merged_df)
+  
   new_df<- data.frame(ids = character(num_groups),
                       labels = character(num_groups),
                       parents = character(num_groups),
@@ -106,7 +117,6 @@ generate_sunburst_df<-function(background_df,variables_list,user_data_analysis,s
     new_df[group_index,'parents']<-parent_name
     
   }
-  
   return(new_df)
 }
 
