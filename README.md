@@ -73,33 +73,24 @@ It demonstrates the distributions of patients from different age and race/ethnic
   <img width="50%" height="auto" src="color_description.JPG">
 </p>
 <p align="center">
-<em>Color representation of inequity levels</em>
+<em>Color representation of representativeness levels</em>
 </p>
 
-In our visualization, grey indicates that no people with selected protected attributes exist in NHANES; black means that the subgroup is missing in both NHANES and RCT; dark red represents the absent subgroup from the RCT; light orange and dark orange point out that some subgroups are not sufficiently represented and may be at risk of being insufficiently recruited into and represented in the clinical trial cohort; on the other hand, dark blue and light blue identify the potential advantaged subgroups which may make inefficient treatment seem helpful or vice versa; teal/white shows that the subgroup is equitably represented in the clinical trial. 
+In our visualization, grey indicates that no people with selected protected attributes exist in NHANES; black means that the subgroup is missing in both NHANES and RCT; dark red represents the absent subgroup from the RCT; light orange and dark orange point out that some subgroups are not sufficiently represented and may be at risk of being insufficiently recruited into and represented in the clinical trial cohort; on the other hand, dark blue and light blue identify the potential advantaged subgroups which may make inefficient treatment seem helpful or vice versa; teal shows that the subgroup is equitably represented in the clinical trial. 
 
 <p align="center">
   <img width="50%" height="auto" src="interactive_1.jpg">
 </p>
 <p align="center">
-<em>The Log Disparate Impact equity levels of subgroups defined over race/ethnicity, gender, education, and age and the corresponding function of observed rate for subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower equity threshold = 0.2, and upper equity threshold = 0.4.</em>
+<em>The Log Disparity representativeness levels of subgroups defined over race/ethnicity, gender, education, and age and the corresponding function of observed rate for subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower metric threshold = 0.2, and upper metric threshold = 0.4.</em>
 </p>
 
-This figure presents the equity levels of subgroups defined by race/ethnicity, gender, education, and age from the inner ring to the outer ring using the Log Disparate Impact metric. By hovering the pointer over the target subgroup areas on the sunburst, the equity label, ideal rate, and observed rate of the subgroups will show on the screen. Additionally, the corresponding math function of observed rates will also show on the side. The green line indicates the ideal rate and the brown line indicates the current RCT observed rate on the figure.
+This figure presents the equity levels of subgroups defined by race/ethnicity, gender, education, and age from the inner ring to the outer ring using the Log Disparity metric. By hovering the pointer over the target subgroup areas on the sunburst, the representativeness label, ideal rate, and observed rate of the subgroups will show on the screen. Additionally, the corresponding math function of observed rates will also show on the side. The green line indicates the ideal rate and the brown line indicates the current RCT observed rate on the figure.
 
-
-<p align="center">
-  <img width="50%" height="auto" src="interactive_2.jpg">
-</p>
-<p align="center">
-<em>The Quality Metric equity levels of subgroups defined over race/ethnicity, gender, education, and age and the corresponding function of observed rate for subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower equity threshold = 0.2, and upper equity threshold = 0.4.</em>
-</p>
-
-For the same subgroups, we apply the Quality Metric, and Adjusted Equal Opportunity separately. This is an example visualization using the Quality Metric on the subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD. Using the same thresholds, we can observe that some subgroups such as the non-Hispanic white participants are with different equity labels. Instead of being overrepresented as shown in the Log Disparate Impact figure, the subgroup is considered to be equitable using the Quality Metric.
 
 
 ## Statistical Results
-Subgroup data of ACCORD, ALLHAT, and SPRINT are summarised with the subgroups' charactersitics, observed rates in the RCT, ideal rates, Log Disparate Impact equity value, group size, p-value, and BH p-value. 
+Subgroup data of ACCORD, ALLHAT, and SPRINT are summarised with the subgroups' charactersitics, observed rates in the RCT, ideal rates, Log Disparity value, group size, p-value, and BH p-value. 
 
 The results are available in the folder **Statistical Results for Example Studies** as csv files.
 
