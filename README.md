@@ -3,9 +3,7 @@
 [![License](https://img.shields.io/badge/License-Apache2-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0) 
 
 
-Quantify the inequities in existing clinical trials and provide insights to improve the clinical trial equity and health equity
-
-**Note: The RCT Equity Visualization Supplement has been updated since Auguest, 2020. Some colors and the user interface are modified in the new 2021 version compared to the 2020 version.**
+Quantify representativeness in randomized clinical trials and provide insights to improve the clinical trial equity and health equity
 
 <!-- TABLE OF CONTENTS -->
 ## Contents
@@ -13,7 +11,7 @@ Quantify the inequities in existing clinical trials and provide insights to impr
 1. [Description](#description)
 1. [Visualization Tool](#visualization-tool)
 1. [Example RCTs](#example-rcts)
-1. [Sample Visualization](#updated-sample-visualization-for-RCT-Equity-Visualization-Supplement-2021)
+1. [Sample Visualization](#RCT-Representativeness-Visualization-Supplement-2021)
 1. [Statistical Results](#statistical-results)
 1. [Contact](#contact)
 1. [License](#license)
@@ -21,16 +19,16 @@ Quantify the inequities in existing clinical trials and provide insights to impr
 
 <!-- ABOUT THE PROJECT -->
 ## Description
-We develop randomized clinical trial (RCT) inequity metrics based on Machine Learning (ML) Fairness Research. Visualizations and statistical tests based on proposed metrics enable researchers and physicians to rapidly visualize and assess potential inequities in RCTs for subgroups. The approach enables users to determine overrepresentation, underrepresentation, and exclusion of subgroups indicating potential limitations of RCTs. The method could help support evaluation of existing RCTs, design of new RCTs, monitoring of RCT recruitment, and applicability of RCT results to patients.
+We develop randomized clinical trial (RCT) representativeness metrics based on Machine Learning (ML) Fairness Research. Visualizations and statistical tests based on proposed metrics enable researchers and physicians to rapidly visualize and assess potential misrepresentations/inequities in RCTs for subgroups. The approach enables users to determine overrepresentation, underrepresentation, and exclusion of subgroups indicating potential limitations of RCTs. The method could help support evaluation of existing RCTs, design of new RCTs, monitoring of RCT recruitment, and applicability of RCT results to patients.
 
 ### What's the problem?
-Within the field of RCT research, there has been ongoing concern that RCTs which lack a diversity of participants may not provide clear evidence of efficacy and safety for new interventions in underrepresented or missing subpopulations. To date, there has been no efficient means to quantify the inequity between those who get enrolled into RCTs and the broader population who could benefit from the new intervention.
+Within the field of RCT research, there has been ongoing concern that RCTs which lack a diversity of participants may not provide clear evidence of efficacy and safety for new interventions in underrepresented or missing subpopulations. To date, there has been insufficient means to quantify the inequity between those who get enrolled into RCTs and the broader population who could benefit from the new intervention.
 
 
 ### How can technology help?
-Extensive  research  in  ML fairness  has  created  metrics  for  quantifying  inequities  in  trained  ML classification models and for creating novel ML approaches to address these inequities.
+Extensive research in ML Fairness has created metrics for quantifying inequities in trained ML classification models and for creating novel ML approaches to address these inequities.
 
-Our novel insight is that assignment of a subject to a RCT can be regarded as a classification function that is random. Applying ML-fairness metrics to this classification problem creates novel inequity metrics for RCTs and other clinical studies. The inequity metrics capture how well the actual assignment of subjects to a RCT matches of a hypothetical random assignment.
+Our novel insight is that assignment of a subject to a RCT can be regarded as a classification function that is random. Applying ML Fairness metrics to this classification problem creates novel representativeness metrics for RCTs and other clinical studies. The representativeness metrics capture how well the actual assignment of subjects to a RCT matches of a hypothetical random assignment.
 
 
 ### The solution
@@ -38,12 +36,12 @@ We compare the observed rate in the RCT for the subgroup to the hypothetical ide
 
 ## Visualization Tool
 
-You can run the example studies on [**RCT Equity Visualization Supplement 2020**](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
+You can run the example studies on [**RCT Representativeness Visualization Supplement 2021**](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
 
 The tool can
-1. Measure inequity in randomized clinical trials
-2. Visualize inequity for subgroups
-3. Compare inequities among studies
+1. Measure representativeness of any subgroup of interest in randomized clinical trials
+2. Visualize misrepresentation/inequity for subgroups
+3. Compare inequities within/among studies
 
 The R codes are available in the folder **Visualization Codes**.
 
@@ -55,12 +53,11 @@ What things you need to install the software and how to install them:
 
 
 ## Example RCTs
-We apply the proposed RCT equity metrics to three landmark clinical trials released in the last decade: Action to ControlCardiovascular Risk in Diabetes (**ACCORD**), Antihypertensive and Lipid-Lowering Treatment to Prevent Heart AttackTrial(**ALLHAT**), and Systolic Blood Pressure Intervention Trial (**SPRINT**). All patient data are obtained through the [BiologicSpecimen and Data Repositories Information Coordinating Center (BioLINCC)](https://biolincc.nhlbi.nih.gov/home/).
+We apply the proposed RCT representativeness metrics to three landmark clinical trials released in the last decade: Action to ControlCardiovascular Risk in Diabetes (**ACCORD**), Antihypertensive and Lipid-Lowering Treatment to Prevent Heart AttackTrial(**ALLHAT**), and Systolic Blood Pressure Intervention Trial (**SPRINT**). All patient data are obtained through the [BiologicSpecimen and Data Repositories Information Coordinating Center (BioLINCC)](https://biolincc.nhlbi.nih.gov/home/).
 
-## Updated Sample Visualization for RCT Equity Visualization Supplement 2021
+## RCT Representativeness Visualization Supplement 2021
 
-We update the RCT Equity Visualization Supplement from version 2020 to version 2021 to optimize for ADA compliance. The same example studies and functions are used in both versions.
-
+We update the RCT Representativeness Visualization Supplement from version 2020 to version 2021 to optimize for ADA compliance. 
 
 <p align="center">
   <img width="50%" height="auto" src="distribution_age_race.jpg">
