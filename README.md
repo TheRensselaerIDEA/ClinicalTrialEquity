@@ -60,7 +60,7 @@ We apply the proposed RCT representativeness metrics to three landmark clinical 
 We update the RCT Representativeness Visualization Supplement from version 2020 to version 2021 to optimize for ADA compliance. 
 
 <p align="center">
-  <img width="50%" height="100%" src="distribution_age_race.JPG">
+  <img width="50%" height="120%" src="distribution_age_race.JPG">
 </p>
 <p align="center">
 <em>The distributions of subgroups defined over age and race/ethnicity in both target population and ACCORD</em>
