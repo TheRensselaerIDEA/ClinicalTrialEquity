@@ -82,19 +82,19 @@ In our visualization, grey indicates that no people with selected protected attr
   <img width="50%" height="auto" src="interactive_1.jpg">
 </p>
 <p align="center">
-<em>The Log Disparity representativeness levels of subgroups defined over race/ethnicity, gender, age, and education and the corresponding function of observed rate for subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower metric threshold = 0.2, and upper metric threshold = 0.4.</em>
+<em>The Log Disparity representativeness levels of subgroups defined over race/ethnicity, gender, age, and education and the corresponding function of observed rate for female subjects from other races with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower metric threshold = 0.2, and upper metric threshold = 0.4.</em>
 </p>
 
-This figure presents the equity levels of subgroups defined by race/ethnicity, gender, education, and age from the inner ring to the outer ring using the Log Disparity metric. By hovering the pointer over the target subgroup areas on the sunburst, the representativeness label, ideal rate, and observed rate of the subgroups will show on the screen. Additionally, the corresponding math function of observed rates will also show on the side. The green line indicates the ideal rate and the brown line indicates the current RCT observed rate on the figure.
+This figure presents the representativeness levels of ACCORD subgroups defined by race/ethnicity, gender, age, and education from the inner ring to the outer ring using the Log Disparity metric. By hovering the pointer over the target subgroup areas on the sunburst, the representativeness label, ideal rate, and observed rate of the subgroups will show on the screen. Additionally, the corresponding math function of observed rates will also show on the side. The green line indicates the ideal rate and the brown line indicates the current RCT observed rate on the figure.
 
 <p align="center">
   <img width="50%" height="auto" src="interactive_2.jpg">
 </p>
 <p align="center">
-<em>The Log Disparity representativeness levels of subgroups defined over race/ethnicity, gender, education, and age and the corresponding function of observed rate for subgroup non-Hispanic white female subjects with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower metric threshold = 0.2, and upper metric threshold = 0.4.</em>
+<em>The Normalized Parity representativeness levels of subgroups defined over race/ethnicity, gender, age, and education and the corresponding function of observed rate for female subjects from other races with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower metric threshold = 0.1, and upper metric threshold = 0.2.</em>
 </p>
 
-This figure presents the equity levels of subgroups defined by race/ethnicity, gender, education, and age from the inner ring to the outer ring using the Log Disparity metric. By hovering the pointer over the target subgroup areas on the sunburst, the representativeness label, ideal rate, and observed rate of the subgroups will show on the screen. Additionally, the corresponding math function of observed rates will also show on the side. The green line indicates the ideal rate and the brown line indicates the current RCT observed rate on the figure.
+This figure presents the representativeness levels of ACCORD subgroups defined by race/ethnicity, gender, age, and education from the inner ring to the outer ring using the Normalized Parity metric. 
 
 
 
