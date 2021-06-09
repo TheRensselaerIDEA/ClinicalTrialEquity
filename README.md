@@ -36,7 +36,7 @@ We compare the observed rate in the RCT for the subgroup to the hypothetical ide
 
 ## Visualization Tool
 
-You can run the example studies on [**RCT Representativeness Visualization Supplement 2021**](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
+You can run the example studies on [**RCT Representativeness Visualization (Paper Supplement)**](https://miao-qi-rpi-app.shinyapps.io/EquityBrowser/).
 
 The tool can
 1. Measure representativeness of any subgroup of interest in randomized clinical trials
@@ -53,14 +53,12 @@ What things you need to install the software and how to install them:
 
 
 ## Example RCTs
-We apply the proposed RCT representativeness metrics to three landmark clinical trials released in the last decade: Action to ControlCardiovascular Risk in Diabetes (**ACCORD**), Antihypertensive and Lipid-Lowering Treatment to Prevent Heart AttackTrial(**ALLHAT**), and Systolic Blood Pressure Intervention Trial (**SPRINT**). All patient data are obtained through the [BiologicSpecimen and Data Repositories Information Coordinating Center (BioLINCC)](https://biolincc.nhlbi.nih.gov/home/).
+We apply the proposed RCT representativeness metrics to three landmark clinical trials released in the last decade: Action to Control Cardiovascular Risk in Diabetes (**ACCORD**), Antihypertensive and Lipid-Lowering Treatment to Prevent Heart Attack Trial(**ALLHAT**), and Systolic Blood Pressure Intervention Trial (**SPRINT**). All patient data are obtained through the [Biologic Specimen and Data Repositories Information Coordinating Center (BioLINCC)](https://biolincc.nhlbi.nih.gov/home/).
 
-## RCT Representativeness Visualization Supplement 2021
-
-We update the RCT Representativeness Visualization Supplement from version 2020 to version 2021 to optimize for ADA compliance. 
+## RCT Representativeness Visualization (Paper Supplement)
 
 <p align="center">
-  <img width="50%" height="auto" src="distribution_age_race.JPG">
+  <img width="50%" height="auto" src="Visualizations/distribution_age_race.JPG">
 </p>
 <p align="center">
 <em>The distributions of subgroups defined over age and race/ethnicity in both target population and ACCORD</em>
@@ -70,7 +68,7 @@ It demonstrates the distributions of patients from different age and race/ethnic
 
 
 <p align="center">
-  <img width="50%" height="auto" src="color_description.JPG">
+  <img width="50%" height="auto" src="Visualizations/color_description.JPG">
 </p>
 <p align="center">
 <em>Color representation of representativeness levels</em>
@@ -79,7 +77,7 @@ It demonstrates the distributions of patients from different age and race/ethnic
 In our visualization, grey indicates that no people with selected protected attributes exist in NHANES; black means that the subgroup is missing in both NHANES and RCT; dark red represents the absent subgroup from the RCT; light orange and dark orange point out that some subgroups are not sufficiently represented and may be at risk of being insufficiently recruited into and represented in the clinical trial cohort; on the other hand, dark blue and light blue identify the potential advantaged subgroups which may make inefficient treatment seem helpful or vice versa; teal shows that the subgroup is equitably represented in the clinical trial. 
 
 <p align="center">
-  <img width="50%" height="auto" src="interactive_1.jpg">
+  <img width="50%" height="auto" src="Visualizations/interactive_1.jpg">
 </p>
 <p align="center">
 <em>The Log Disparity representativeness levels of subgroups defined over race/ethnicity, gender, age, and education and the corresponding function of observed rate for female subjects from other races with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower metric threshold = 0.2, and upper metric threshold = 0.4.</em>
@@ -88,7 +86,7 @@ In our visualization, grey indicates that no people with selected protected attr
 This figure presents the representativeness levels of ACCORD subgroups defined by race/ethnicity, gender, age, and education from the inner ring to the outer ring using the Log Disparity metric. By hovering the pointer over the target subgroup areas on the sunburst, the representativeness label, ideal rate, and observed rate of the subgroups will show on the screen. Additionally, the corresponding math function of observed rates will also show on the side. The green line indicates the ideal rate and the brown line indicates the current RCT observed rate on the figure.
 
 <p align="center">
-  <img width="50%" height="auto" src="interactive_2.jpg">
+  <img width="50%" height="auto" src="Visualizations/interactive_2.jpg">
 </p>
 <p align="center">
 <em>The Normalized Parity representativeness levels of subgroups defined over race/ethnicity, gender, age, and education and the corresponding function of observed rate for female subjects from other races with some college/technical school education and age over 64 in ACCORD, with significance level = 0.05,lower metric threshold = 0.1, and upper metric threshold = 0.2.</em>
@@ -108,7 +106,7 @@ The results are available in the folder **Statistical Results for Example Studie
 
 Miao Qi  - qim@rpi.edu
 
-Project Link: [ClinicalTrialEquity](https://github.com/TheRensselaerIDEA/ClinicalTrialEquity)
+Project GitHub Link: [ClinicalTrialEquity](https://github.com/TheRensselaerIDEA/ClinicalTrialEquity)
 
 ## License
 
