@@ -6,7 +6,7 @@ source("modules/sunburst_process.R")
 source("modules/studies_comparison.R")
 
 ######################################
-ui <- dashboardPage(skin = "black", title = "RCT Representativeness Visualization Supplement 2021",
+ui <- dashboardPage(skin = "black", title = "RCT Representativeness Visualization (Paper Supplement)",
                     dashboardHeader(title = tags$div(
                       class = "title-text",
                       tags$div(id = "logo_block", tags$img(src="Rensselaer.png", id="header_logo"))
@@ -18,7 +18,7 @@ ui <- dashboardPage(skin = "black", title = "RCT Representativeness Visualizatio
                       width = 350,
                       sidebarMenu(
                         id = "tabs",
-                        menuItem("Trial Data Profiler", tabName = "profiler"),
+                        menuItem("About", tabName = "profiler"),
                         menuItem("Representativeness Analysis",tabName = "main"),
                         uiOutput("taskInputs"),
                         uiOutput("trialInputs"),
@@ -46,7 +46,7 @@ ui <- dashboardPage(skin = "black", title = "RCT Representativeness Visualizatio
                       tags$script(HTML('
          $(document).ready(function() {
                      $(\'head\').append(\'<link rel="stylesheet" href="spread-style.css" type="text/css" />\');
-            $("header").find("nav").append(\'<div class="title-text title-lside">RCT Representativeness <b><span style = "color: #990000;"><span style="padding-left:2px; padding-right: 2px;">Visualization Supplement 2021</span></span></b></div>\');
+            $("header").find("nav").append(\'<div class="title-text title-lside">RCT Representativeness <b><span style = "color: #990000;"><span style="padding-left:2px; padding-right: 2px;">Visualization (Paper Supplement)</span></span></b></div>\');
              // $(".sidebar-toggle").insertBefore(".tab-content");
           })
        ')),
@@ -63,21 +63,18 @@ server <- function(input, output, session) {
   ############ initialization ############
   # these will be used to determine which page to show
   showBackgroundUploader<-reactiveVal(TRUE)
-  showUploader <- reactiveVal(FALSE)
-  
-  # Tracks the type of user 
-  userType <- reactiveVal(NULL)
-  
   # Tracks the type of task 
-  taskType <- reactiveVal(NULL)
+  taskType <- reactiveVal("researcher_metric_evaluation")
   
   # Tracks the type of disease 
-  diseaseType <- reactiveVal()
+  diseaseType <- reactiveVal("diabetes")
 
   # Stores RCT data file
+  trialName <- reactiveVal("ACCORD")
   trialData <- reactiveVal()
 
   # Stores background data
+  targetName <- reactiveVal("Target Population (type-II diabetes)")
   backgroundData <- reactiveVal() 
   
   # Tracks the type of inequity metric 
@@ -88,7 +85,7 @@ server <- function(input, output, session) {
   lowerThreshold <- reactiveVal(0.2)
   significanceThreshold <- reactiveVal(0.05)
   
-  #Tracks patient characteristtics
+  #Tracks patient characteristics
   patientCharacteristics<-reactiveValues()
   
   ############ Start Pages ############
@@ -98,73 +95,69 @@ server <- function(input, output, session) {
       showModal(modalDialog(
         tags$div(
           class = "start-modal",
-          HTML("<h1 class = 'start-modal'>RCT Representativeness<b><span style = 'color: #990000;'><span style='padding-left:5px; padding-right: 5px;'>Visualization Supplement 2021</span></span></b></h1>"),
+          HTML("<h1 class = 'start-modal'>RCT Representativeness<b><span style = 'color: #990000;'><span style='padding-left:5px; padding-right: 5px;'>Visualization (Paper Supplement)</span></span></b></h1>"),
           div(class="start-modal-copy",
           h2('Evaluate representativeness of clinical trials.\n', class="start-modal"),
           h2('Compare misrepresentations among studies.\n', class="start-modal"),
           h2('Get insights on how to improve the clinical trial and health equity.\n', class="start-modal"),
-          h5('Note: RCT Representativeness visualizations are done by students and staff of The Rensselaer Institute for Data Exploration and Applications at Rensselaer Polytechnic Institute.\n', class="start-modal"),
           actionButton("closeStartModal", "GET STARTED", class = "btn-get-started btn-continue")
         )),
         footer = tags$div(class = "modal-footer", style = "background-color:#fff;margin-top:0",
-                          HTML('<a href="https://github.com/TheRensselaerIDEA/ClinicalTrialEquity" target = "_blank">About</a>  |  <a href="https://info.rpi.edu/web-privacy-statement">Privacy Policy</a>'),#<a href="">Clinical Trial Data Template</a>
+                          HTML('<a href="https://github.com/TheRensselaerIDEA/ClinicalTrialEquity" target = "_blank">GitHub</a>  |  <a href="https://info.rpi.edu/web-privacy-statement">Privacy Policy</a>'),#<a href="">Clinical Trial Data Template</a>
         )
       ))
+      
       shinyjs::addClass(selector = "body", class = "sidebar-collapse")
 
       column(12,
-             tags$div(
-               class = "eqiutyMetrics",
-               h2(class="zip", "Target Population Data Uploader"),
-               HTML("<p class = 'zip'>For more information about the target population file, see the example file on<a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity' target = '_blank'> GitHub repository.</a>"),
-
-               selectInput("diseaseType", "Select the Disease Type of the Trial Data:",
-                           choices = c("Type II Diabetes" = "disease_diabetes",
-                                       "Hypertension" = "disease_hypertension"),
-                           multiple = FALSE)%>%
-                 shinyInput_label_embed(
-                   shiny_iconlink() %>%
-                     bs_embed_popover(
-                       title = "Disease Type", content = "Please select the disease studied in the RCT.", placement = "left"
-                     )
+                  tags$div(
+                   class = "eqiutyMetrics",
+                   h2("Paper: Quantifying Representativeness in Randomized Clinical Trials using Machine Learning Fairness Metrics"),
+                   h4("Objective"),
+                   h5("We formulate representativeness of randomized clinical trials (RCTs) as a machine learning (ML) fairness problem, derive new representation metrics, and deploy them in visualization tools which help users identify subpopulations that are underrepresented in RCT cohorts with respect to national or community-based target populations."),   
+                   h4("Materials and Methods"),
+                   h5("We represent RCT cohort assignments as random binary classification fairness problems, and then prove how ML fairness metrics based on RCT enrollment fraction can be efficiently calculated using easily computed rates of subpopulations in RCT cohorts and target populations.
+                       We propose standardized version of these metrics and deploy them in an interactive tool to analyze three RCTs with respect to type-2 diabetes and hypertension target populations in the National Health and Nutrition Examination Survey."),
+                   h4("Results"),
+                   h5("We demonstrate how the proposed metrics and associated statistics enables users to rapidly examine representativeness of all subpopulations in the RCT defined by a set of categorical traits (e.g. sex, race, ethnicity, smokers, and blood pressure) with respect to target populations. "),
+                   h4("Discussion"),
+                   h5("The normalized metrics provide an intuitive common scale for evaluating representation across subgroups with vastly different enrollment fractions and rates in RCT cohorts. The metrics are beneficial complements to existing approaches (e.g. enrollment fractions and GIST) which are used to identify generalizability and health equity of RCTs."), 
+                   h4("Conclusion"),
+                   h5("By quantifying the gaps between RCTs and target populations, the proposed methods can support generalizability evaluation of existing RCTs, design of new RCTs, and the monitoring of RCT recruitment, ultimately contributing to more equitable public health outcomes."),
+                   
+                   HTML("<p class = 'zip'>The paper is available <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity/tree/master/Papers' target = '_blank'>online.</a>"),
+                  ),
+                 tags$div(
+                   class = "eqiutyMetrics",
+                   h2(class="zip", "Instructions"),
+                   h4("Step 1: Choose an RCT for Analysis"),
+                   h5("Users should select one sample RCT from the three available studies (ACCORD for type-II diabetes, ALLHAT for hypertension, and SPRINT for hypertension) that they would like to explore. For the task of comparative analysis, multiple RCTs with the same target population can be selected to compare."),
+                   h4("Step 2: Select the Target Population"),
+                   h5("The target population of interest for our sample RCTs will be automatically selected according to the features of RCTs and the user-selected patient attributes."),
+                   h4("Step 3: Select the Objective and Attributes"),
+                   h5("(3A) Select a Task: We implement three functions to perform representativeness evaluation of RCTs. 
+                   'Representativeness Evaluation' is designed to measures the representativeness level of RCT subgroups with selected patient characteristics;
+                   'Study vs Target Population' helps to compare the distribution of patient characteristics between the RCT and target population;
+                   'Comparative Study of Representativeness' enables users to compare the representativeness score of a same set of characteristics among different RCTs. 
+                      Users can perform one function each time."),
+                   h5("(3B) Choose Attributes for Evaluation: The selected attributes are regarded as the protected attributes to perform the evaluation."),
+                   h5("(3C) Variable Order: Users can rearrange the order of patients attributes through drag and drop the attributes shown in the sidebar to generate different sunburst plots. The attributes will be ordered from the inner to the outer rings on the sunburst plots."),
+                   h4("Step 4: Select a Metric and its Settings"),
+                   h5("(4A) Select a Metric: Users can select one of our example representativeness metrics for analysis."),
+                   h5("(4B) Set Lower Threshold: This value is used to distinguish ranges of metric values from inequitable representation to equitable representation of subgroups. It is usually determined by the published literatures."),
+                   h5("(4C) Set Upper Threshold: We additionally design this value to distinguish ranges of metric values from highly inequitable representation to inequitable representation of subgroups. It can be selected based on different study scenarios/goals by users."),
+                   h5("(4D) Set Significance Threshold: This value is the minimum significant difference between RCT and target population subgroup rates that is considered as an equitable representation.")
                  ),
-               use_bs_popover(),
-               radioButtons(
-                 "useNHANES",
-                 NULL,
-                 selected = "NHANES",
-                 inline = TRUE,
-                 choiceNames = c("Use NHANES"),
-                 choiceValues = c("NHANES")
-               )%>%
-                 shinyInput_label_embed(
-                   shiny_iconlink() %>%
-                     bs_embed_popover(
-                       title = "Target Population", content = "The population for which the RCT intends to examine.", placement = "left"
-                     ))
-
-               
-             ),
              
-             actionButton(inputId = "continue2trialuploader", label = "Continue", class="btn-continue", style="margin: 5% 0 5% 0")
-      )
+                  tags$div(
+                   class = "modal-footer",
+                   HTML("<p class = 'zip'>For more information about the project, please see the <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity' target = '_blank'> GitHub repository.</a>"),
+                   ),
+                 
+                  actionButton(inputId = "continue2main", label = "Continue", class="btn-continue", style="margin: 5% 0 5% 0")
+             )
 
-    }
-    else if (showUploader()){
-      column(12,
-             actionButton(inputId = "back2Background", label = tags$div(icon("arrow-left"), tags$p("Back"))),
-             use_bs_popover(),
-             tags$div(
-               shinyjs::useShinyjs(),
-               uiOutput("trialDataSelection"),
-               HTML("<p>Note: The tool will never store your data. Read more about our privacy policy <a href = 'https://info.rpi.edu/web-privacy-statement' target = '_blank'>here</a></p>"),
-               actionButton(inputId = "continue2main", label = "Continue", class="btn-continue", style="margin: 5% 0 5% 0")),
-            
-             tags$div(class = "footer",
-                      HTML('<a href="https://github.com/TheRensselaerIDEA/ClinicalTrialEquity" target = "_blank">About</a>  |  <a href="https://info.rpi.edu/web-privacy-statement">Privacy Policy</a>')
-                      )
-             
-      )
+
     }
   })
   
@@ -174,20 +167,21 @@ server <- function(input, output, session) {
   output$taskInputs <- renderUI({
       column(12, class = "side_sub",
              fluidRow(
-               actionButton("back2UploaderResearcher", label = "Return to Uploader", class = "profiler-button")),             
-             uiOutput("user_selected_file_researcher_background"),
-             uiOutput("user_selected_file_researcher"),
-             selectInput(inputId = "tasks_researcher", label = "Select a task",
-                         c("Study vs Target Population" = "distribution_p",
-                           "Representativeness  Evaluation" = "metric_r",
+                useShinyFeedback(), # include shinyFeedback
+                actionButton("back2Background", label = "Return to About", class = "profiler-button")),             
+                uiOutput("user_selected_file_researcher"),
+                uiOutput("user_selected_file_researcher_background"),
+                selectInput(inputId = "tasks_researcher", label = "Step 3A: Select a Task",
+                         c("Representativeness Evaluation" = "metric_r",
+                           "Study vs Target Population" = "distribution_p",
                            "Comparative Study of Representativeness" = "comparison_r"),
-                         selected ="distribution_p" )%>%
+                         selected ="metric_r" )%>%
                shinyInput_label_embed(
                  shiny_iconlink() %>%
                    bs_embed_popover(
-                     title = "Tasks", content = "Study vs Target Population' compares the distribution of patient characteristics 
-                     between the RCT and target population;'Equity Evaluation' measures the equity level of RCT subgroups with selected patient characteristics;
-                     'Comparative Study of Equity' compares the equity score of a same set of characteristics among different RCTs", placement = "left"
+                     title = "Tasks", content = "'Representativeness Evaluation' measures the representativeness level of RCT subgroups with selected patient characteristics;
+                     'Study vs Target Population' compares the distribution of patient characteristics between the RCT and target population;
+                     'Comparative Study of Representativeness' compares the representativeness score of a same set of characteristics among different RCTs", placement = "left"
                    )
                )
       )
@@ -198,7 +192,7 @@ server <- function(input, output, session) {
   output$metricInputs <- renderUI({
     if (taskType() != "physician_comparison_distribution"){
       column(12, class = "side_sub",
-         selectInput(inputId = "equity_metrics", label = "Select a Representativeness Metric",
+         selectInput(inputId = "equity_metrics", label = "Step 4A: Select a Metric",
                      c("Log Disparity" = "DI_metric",
                        "Normalized Parity" = "AEO_metric"))%>%
            shinyInput_label_embed(
@@ -211,25 +205,25 @@ server <- function(input, output, session) {
                )
            ),
          use_bs_popover(),
-         numericInput("equity_cutoff1", "Metric Lower Threshold:", 0.2, min = 0.0, max = 1.0, step = 0.01)%>%
+         numericInput("equity_cutoff1", "Step 4B: Set Lower Threshold", 0.2, min = 0.0, max = 1.0, step = 0.01)%>%
            shinyInput_label_embed(
              shiny_iconlink() %>%
                bs_embed_popover(
-                 title = "Lower Threshold", content = "It is used to distinguish ranges of values from INEQUITABLE to EQUITABLE.", placement = "left"
+                 title = "Lower Threshold", content = "It is used to distinguish ranges of values from INEQUITABLE representation to EQUITABLE representation.", placement = "left"
                )
            ),
-         numericInput("equity_cutoff2", "Metric Upper Threshold:", 0.4, min = 0.0, max = 1.0, step = 0.01)%>%
+         numericInput("equity_cutoff2", "Step 4C: Set Upper Threshold", 0.4, min = 0.0, max = 1.0, step = 0.01)%>%
            shinyInput_label_embed(
              shiny_iconlink() %>%
                bs_embed_popover(
-                 title = "Upper Threshold", content = "It is used to distinguish ranges of values from HIGHLY INEQUITABLE to INEQUITABLE.", placement = "left"
+                 title = "Upper Threshold", content = "It is used to distinguish ranges of values from HIGHLY INEQUITABLE representation to INEQUITABLE representation.", placement = "left"
                )
            ),
-         numericInput("significance_cutoff", "Significance Threshold:", 0.05, min = 0.0, max = 1.0, step = 0.01)%>%
+         numericInput("significance_cutoff", "Step 4D: Set Significance Threshold", 0.05, min = 0.0, max = 1.0, step = 0.01)%>%
            shinyInput_label_embed(
              shiny_iconlink() %>%
                bs_embed_popover(
-                 title = "Significance Level", content = "It is the minimum significant difference between RCT and target population subgroup rates that is considered as equitable.", placement = "left"
+                 title = "Significance Level", content = "It is the minimum significant difference between RCT and target population subgroup rates that is considered as an equitable representation.", placement = "left"
                )
            )
       )
@@ -254,7 +248,6 @@ server <- function(input, output, session) {
              uiOutput("user_var_order")
       )
     }
-    else{}
 
     
   })
@@ -290,7 +283,7 @@ server <- function(input, output, session) {
       column(12,
         tags$div(
           style="padding-bottom: 50px;background-color: #ffffff;padding-left: 15px;padding-right: 15px;padding-top: 50px;margin-bottom: 20px;",
-          h2("Comparison of Patient Characterisitcs between the Selected RCT and the Target Population"),
+          h2("Comparison of Patient Characterisitcs between the RCT and the Target Population"),
           h5("Please select the patient characteristics in the sidebar to explore the multi-characteristics subgroups distribution"),
           plotlyOutput(outputId = "comparePlot"),
         ),
@@ -356,7 +349,6 @@ server <- function(input, output, session) {
              tags$div(
                style="padding-bottom: 50px;background-color: #ffffff;padding-left: 15px;padding-right: 15px;padding-top: 50px;margin-bottom: 20px;",
                h2("Representativeness of Demographic Characterisitcs in the RCTs"),
-               #htmlOutput("study_comparison_demo")
                htmlOutput("study_comparison_demo")
              ),
              tags$div(
@@ -380,81 +372,23 @@ server <- function(input, output, session) {
 
   
   
-  ##### SELECT DISEASE ##### 
-  observeEvent(input$diseaseType,{
-    if ("disease_diabetes" %in% input$diseaseType){
-      diseaseType("diabetes")
-    }
-    else if ( "disease_hypertension" %in% input$diseaseType){
-      diseaseType("hypertension")
-    }
-    
-  })
-  
-  output$trialDataSelection <- renderUI({
-    if (diseaseType() == "diabetes") {
-      selectInput("trialSampler", label = "Pick a sample RCT dataset", selected = "ACCORD (type-II diabetes)", multiple = FALSE, choices = c("ACCORD (type-II diabetes)"))%>%
-                    shinyInput_label_embed(
-                      shiny_iconlink() %>%
-                        bs_embed_popover(
-                          title = "Sampsle RCT for Diabetes", content = "Please select the ACCORD study. For multiple-RCT example, please select HYPERTENSION for the disease type in the previous page. ", placement = "left"
-                        )
-                    )}
-    else if (diseaseType() == "hypertension"){
-      selectInput("trialSampler2", label = "Pick sample RCT dataset(s)", selected = "SPRINT (hypertension)", multiple = TRUE, choices = c("SPRINT (hypertension)","ALLHAT (hypertension)" ))%>%
-        shinyInput_label_embed(
-          shiny_iconlink() %>%
-            bs_embed_popover(
-              title = "Sample RCT for Hypertension", content = "For hypertension, both single-RCT and multiple-RCT selections are allowed. For a multiple-RCT sample, please select both SPRINT and ALLHAT studies.", placement = "left"
-            )
-        )
-    }
-  })
-                  
-                 
 
-  
-  
-  
   #######  BACK TO PREVIOUS PAGE ######
   
   # back button functionality for the background uploader
   observeEvent(input$back2Background, {
-    showBackgroundUploader(TRUE)
-    showUploader(FALSE)
-    taskType <- reactiveVal(NULL)
-    backgroundData<- reactiveVal(NULL)
-    trialData<- reactiveVal(NULL)
-  })
-  
-  # back button functionality for the RCT uploader
-  
-  observeEvent(input$back2UploaderResearcher, {
     updateTabItems(session, "tabs", "profiler")
     shinyjs::addClass(selector = "body", class = "sidebar-collapse")
-    showUploader(TRUE)
-    showBackgroundUploader(FALSE)
-    taskType <- reactiveVal(NULL)
-    trialData<- reactiveVal(NULL)
-    upperThreshold <- reactiveVal(0.4)
-    lowerThreshold <- reactiveVal(0.2)
-    significanceThreshold <- reactiveVal(0.05)
+    showBackgroundUploader(TRUE)
   })
   
 
  
   #######  CONTINUOUS TO NEXT PAGE  ########
-   observeEvent(input$continue2trialuploader, {
-     showUploader(TRUE)
-     showBackgroundUploader(FALSE)
-  })
-  
-  
-  
   observeEvent(input$continue2main,{
     updateTabItems(session, "tabs", "main")
     shinyjs::removeClass(selector = "body", class = "sidebar-collapse")
-    showUploader(FALSE)
+    showBackgroundUploader(FALSE)
     
   })
 
@@ -486,31 +420,102 @@ server <- function(input, output, session) {
     significanceThreshold(input$significance_cutoff)
   })
   
+
   
+
+
+  ######################################## Upload Datasets ########################################################
   
-  #####################################################################################################################  
+  ###########################################  STEP 1 ###############################################
   
-  observeEvent(input$upload_this_file_researcher_background, {
-    file_groups<- df_file_background()
-    d_path<-which_file(as.character(input$upload_this_file_researcher_background), file_groups)
-    backgroundData(read.csv(d_path,
-                       header = TRUE, 
-                       sep = ","))
+  df_file<- reactive({
+    name_list<-list()
+    path_of_files<-list()
+    name_list[1]<- "ACCORD"
+    path_of_files[1]<- "./ACCORD.csv"
+    name_list[2]<- "SPRINT"
+    path_of_files[2]<- "./SPRINT.csv"
+    name_list[3]<-"ALLHAT"
+    path_of_files[3]<- "./ALLHAT.csv"
+    num<-length(name_list)
+    new_df <- data.frame("new_name" = as.character(name_list), "old_name" = as.character(name_list), "datapath" = as.character(path_of_files))
+    fctr.cols <- sapply(new_df, is.factor)
+    new_df[, fctr.cols] <- sapply(new_df[, fctr.cols], as.character)
+    
+    return(new_df)
+    
   })
   
- 
+  df_file_names<- reactive({
+    new_df<-df_file()
+    return(as.list(new_df$new_name))
+  })
+  
+  
+  which_file<-function(selected_file, file_group){
+    my_row<- file_group[which(file_group$new_name == selected_file), ]
+    this_file_path<-as.character(my_row$datapath)
+    return(this_file_path)
+  }
+  
+  
+  
+  output$user_selected_file_comparative <- renderUI({
+
+    if (diseaseType() == "diabetes"){
+      files_names<- c("ACCORD")
+    }
+    else{
+      files_names<- c("ALLHAT","SPRINT")
+    }
+
+    selectInput("upload_this_file_researcher_compare", "Step 1: Choose RCT(s) for Comparative Analysis", files_names, multiple = TRUE, selected = trialName())
+  })
+  
+  output$user_selected_file_researcher <- renderUI({
+    # Get the data set with the appropriate name
+    
+    if(taskType() == "researcher_comparison_trial"){
+       column(12, class = "side_sub",
+             uiOutput("user_selected_file_comparative")
+    )}
+    else{
+      files_names<-df_file_names()
+      column(12, class = "side_sub",
+             selectInput("upload_this_file_researcher", "Step 1: Choose an RCT for Analysis",files_names)
+      )
+    }   
+  }) 
+  
   
   observeEvent(input$upload_this_file_researcher, {
     file_groups<- df_file()
     d_path<-which_file(as.character(input$upload_this_file_researcher), file_groups)
+    trialName(as.character(input$upload_this_file_researcher))
+    
+    if (trialName() == "ACCORD"){
+      diseaseType("diabetes")
+      targetName("Target Population (type-II diabetes)")
+    }
+    else {
+      diseaseType("hypertension")
+      targetName("Target Population (hypertension)")
+    }
     
     trialData(read.csv(d_path,
                        header = TRUE,
                        sep = ","))
+    
+    
   })
   
-
-
+  output$user_selected_file_researcher_background <- renderUI({
+    # Get the data set with the appropriate name
+    files_names<-c("Target Population (type-II diabetes)", "Target Population (hypertension)")
+    selectInput("upload_this_file_researcher_background", "Step 2: Select the Target Population",files_names, selected = targetName())
+  })
+  
+  
   df_upload_files<-function(){
     file_groups<- df_file()
     upload <- list()
@@ -526,137 +531,99 @@ server <- function(input, output, session) {
     return(upload)
   }
   
+  
+
 
   
-  ######################################## Upload Datasets ########################################################
-
-  df_file<- reactive({
-    if (diseaseType() == "hypertension"){
-      name_list<-list()
-      path_of_files<-list()
-      i2<-1
-      if ("SPRINT (hypertension)" %in% input$trialSampler2){
-        name_list[i2]<- "SPRINT"
-        path_of_files[i2]<- "./SPRINT.csv"
-        i2<-i2+1
+  
+  ###########################################  STEP 2 ###############################################
+  observeEvent(input$vars_display_sundb,{
+    var_names<- input$vars_display_sundb
+    num_variables_df<-length(var_names)
+    
+    if (("TC" %in% var_names)|("FPG" %in% var_names)){
+      if (num_variables_df>2){
+        if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension_combined.csv"}
+        else{path_of_file<-"./modules/background_data/nhanes_diabetes_combined.csv"}
       }
-      if ("ALLHAT (hypertension)" %in% input$trialSampler2){
-        name_list[i2]<-"ALLHAT"
-        path_of_files[i2]<- "./ALLHAT.csv"
+      else if (num_variables_df==2){
+        if (("TC" %in% var_names)&("FPG" %in% var_names)){
+          if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension_lab.csv"}
+          else{path_of_file<-"./modules/background_data/nhanes_diabetes_lab.csv"}
+        }
+        else{
+          if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension_combined.csv"}
+          else{path_of_file<-"./modules/background_data/nhanes_diabetes_combined.csv"}
+        }
+        
       }
-      num<-length(name_list)
+      else{
+        if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension_lab.csv"}
+        else{path_of_file<-"./modules/background_data/nhanes_diabetes_lab.csv"}
+      }
     }
-    else if (diseaseType() == "diabetes"){
-      name_list<-list()
-      path_of_files<-list()
-      
-      name_list[1]<- "ACCORD (type-II diabetes)"
-      path_of_files[1]<- "./ACCORD.csv"
-      num<-1
+    else{
+      if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension.csv"}
+        else{path_of_file<-"./modules/background_data/nhanes_diabetes.csv"}
     }
     
-    new_df <- data.frame("new_name" = as.character(name_list), "old_name" = as.character(name_list), "datapath" = as.character(path_of_files))
+    backgroundData(read.csv(path_of_file,
+                            header = TRUE, 
+                            sep = ","))
     
-    fctr.cols <- sapply(new_df, is.factor)
-    new_df[, fctr.cols] <- sapply(new_df[, fctr.cols], as.character)
-    
-    
-    return(new_df)
     
   })
-  
-  
-  df_file_names<- reactive({
-    new_df<-df_file()
-    return(as.list(new_df$new_name))
-  })
-  
-  
-  
-  df_file_background<- reactive({
-    if (diseaseType() == "hypertension"){
-      name_list<-list()
-      path_of_files<-list()
-      
-      name_list[1]<-"Target Population (hypertension,all)"
-      name_list[2]<-"Target Population (hypertension,nonlab)"
-      name_list[3]<-"Target Population (hypertension,lab)"
-      
-      path_of_files[1]<-"./modules/background_data/nhanes_hypertension_combined.csv"
-      path_of_files[2]<-"./modules/background_data/nhanes_hypertension.csv"
-      path_of_files[3]<-"./modules/background_data/nhanes_hypertension_lab.csv"
 
-
-    }
-    else if (diseaseType() == "diabetes"){
-      name_list<-list()
-      path_of_files<-list()
-      
-      name_list[1]<-"Target Population (diabetes,all)"
-      name_list[2]<-"Target Population (diabetes,nonlab)"
-      name_list[3]<-"Target Population (diabetes,lab)"
-
-      path_of_files[1]<-"./modules/background_data/nhanes_diabetes_combined.csv"
-      path_of_files[2]<-"./modules/background_data/nhanes_diabetes.csv"
-      path_of_files[3]<-"./modules/background_data/nhanes_diabetes_lab.csv"
-
-    }
-    
-    
-    new_df <- data.frame("new_name" = as.character(name_list), "old_name" = as.character(name_list), "datapath" = as.character(path_of_files))
-    
-    fctr.cols <- sapply(new_df, is.factor)
-    new_df[, fctr.cols] <- sapply(new_df[, fctr.cols], as.character)
-    return(new_df)
-    
-  })
-   
-   
-   df_file_names_background<- reactive({
-     new_df<- df_file_background()
-     return(as.list(new_df$new_name))
-   })
-
-   
-   output$user_selected_file_researcher_background <- renderUI({
-     # Get the data set with the appropriate name
-     req(input$continue2main)
-     files_names<-df_file_names_background()
-     selectInput("upload_this_file_researcher_background", "Choose a file to provide target population information:",files_names)
-   })
-   
-   output$user_selected_file_researcher <- renderUI({
-     # Get the data set with the appropriate name
-     req(input$continue2main)
-     files_names<-df_file_names()
-     if(taskType() == "researcher_comparison_trial"){
-       column(12, class = "side_sub",
-              selectInput("upload_this_file_researcher_compare", "Choose RCT(s) for comparative anlysis:", files_names, multiple = TRUE)
-       )
+  observeEvent(input$upload_this_file_researcher_background, {
+     if ((diseaseType() == "hypertension" & input$upload_this_file_researcher_background == "Target Population (type-II diabetes)") | (diseaseType() == "diabetes" & input$upload_this_file_researcher_background == "Target Population (hypertension)")){
+       showFeedbackWarning(
+         inputId = "upload_this_file_researcher_background",
+         text = "Wrong Target Population!"
+       )  
      }
-     else{
-       column(12, class = "side_sub",
-              selectInput("upload_this_file_researcher", "Choose an RCT for analysis:",files_names)
-       )
-     }   }) 
-   
-   
-   
-   
-  which_file<-function(selected_file, file_group){
+     else {
+       hideFeedback("upload_this_file_researcher_background")
+       var_names<- input$vars_display_sundb
+       num_variables_df<-length(var_names)
+       
+       if (("TC" %in% var_names)|("FPG" %in% var_names)){
+         if (num_variables_df>2){
+           if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension_combined.csv"}
+           else{path_of_file<-"./modules/background_data/nhanes_diabetes_combined.csv"}
+         }
+         else if (num_variables_df==2){
+           if (("TC" %in% var_names)&("FPG" %in% var_names)){
+             if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension_lab.csv"}
+             else{path_of_file<-"./modules/background_data/nhanes_diabetes_lab.csv"}
+           }
+           else{
+             if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension_combined.csv"}
+             else{path_of_file<-"./modules/background_data/nhanes_diabetes_combined.csv"}
+           }
+           
+         }
+         else{
+           if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension_lab.csv"}
+           else{path_of_file<-"./modules/background_data/nhanes_diabetes_lab.csv"}
+         }
+       }
+       else{
+         if (diseaseType() == "hypertension"){path_of_file<-"./modules/background_data/nhanes_hypertension.csv"}
+         else{path_of_file<-"./modules/background_data/nhanes_diabetes.csv"}
+       }
+       
+       backgroundData(read.csv(path_of_file,
+                               header = TRUE, 
+                               sep = ","))
+       
+     }
+    
+     
+   })
 
-    my_row<- file_group[which(file_group$new_name == selected_file), ]
-    this_file_path<-as.character(my_row$datapath)
-    return(this_file_path)
-  }
-  
-
- 
-  
+   
 
 
- 
-  
 
   ######## Variabes Selection & Ordering ##################
   #User pick the protected attributes that they want to analyze (univariate, bivariate, or multivariate)
@@ -665,12 +632,11 @@ server <- function(input, output, session) {
     if (is.null(trialData())){
       return()
     }
-    
     dat <- trialData()
     colnames<-names(dat[1:ncol(dat)-1])
-    selectInput("vars_display_sundb", "Choose Variables for Representativeness Evaluation", 
+    selectInput("vars_display_sundb", "3B: Choose Attributes for Evaluation", 
                 choices  = colnames,
-                #selected = colnames[1],
+                selected = colnames[1:4],
                 multiple= TRUE
                 )
   })
@@ -682,7 +648,7 @@ server <- function(input, output, session) {
   output$user_var_order <- renderUI({
     # Get the data set with the appropriate name
     colnames <- input$vars_display_sundb
-    orderInput(inputId = "vars_sundb", label= "Variable Order: inner - outer (Drag and drop the strings to reorder)", items  = colnames)
+    orderInput(inputId = "vars_sundb", label= "Step 3C: Variable Order: Inner - Outer (Drag and Drop the Attributes to Reorder)", items  = colnames)
   })
 
   #########################################################Distribution########################################################
@@ -992,7 +958,7 @@ server <- function(input, output, session) {
     else if (returned_info_click$EquityLable=="Underrepresented"){
       my_word<- "underrepresented in this RCT"
       my_transition<- paste("However your trial contains a subgroup population of ", 
-                            observed_num, " subjects, which is less than the range for equity but more than the highly 
+                            observed_num, " subjects, which is less than the range for equitble representation but more than the highly 
                             underrepresented threshold.",sep="")
     }
     else if (returned_info_click$EquityLable=="Highly Overrepresented"){
@@ -1004,7 +970,7 @@ server <- function(input, output, session) {
     else if (returned_info_click$EquityLable=="Overrepresented"){
       my_word<- "overrepresented in this RCT"
       my_transition<- paste("However your trial includes ", 
-                            observed_num, " subjects, which is over the range for equity but under the highly 
+                            observed_num, " subjects, which is over the range for equitable representation but under the highly 
                             overrepresented threshold.",sep="")
     }
     else if (returned_info_click$EquityLable=="Absent"){
@@ -1030,7 +996,7 @@ server <- function(input, output, session) {
     HTML(paste(
       "REPORT of the RCT  ", my_file_name,  "<br>",
       "Subgroup Name :  ", group_name, "<br>",
-      "Its equity value of  ", group_name, " using the metric ", metric_used, " is ",  returned_info_click$EquityValue,
+      "Its value of  ", group_name, " using the metric ", metric_used, " is ",  returned_info_click$EquityValue,
       " , which means that this subgroup is ", my_word, ".","<br>",
       "The ideal rate of the subgroup is " ,returned_info_click$Ideal_Rate, " and the observed rate of the subgroup is ", returned_info_click$Observed_Rate, ".","<br>",
       "In an RCT of ", trial_participants, " participants targeting the population of ", diseaseType(), " , we expect a subgroup population of " ,returned_info_click$ids, " to be around ", ideal_num, ".","<br>",
