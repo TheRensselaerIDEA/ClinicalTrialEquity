@@ -19,7 +19,7 @@ Quantify representativeness in randomized clinical trials and provide insights t
 
 <!-- ABOUT THE PROJECT -->
 ## Description
-We develop randomized clinical trial (RCT) representativeness metrics based on Machine Learning (ML) Fairness Research. Visualizations and statistical tests based on proposed metrics enable researchers and physicians to rapidly visualize and assess potential misrepresentations/inequities in RCTs for subgroups. The approach enables users to determine overrepresentation, underrepresentation, and exclusion of subgroups indicating potential limitations of RCTs. The method could help support evaluation of existing RCTs, design of new RCTs, monitoring of RCT recruitment, and applicability of RCT results to participants.
+We develop randomized clinical trial (RCT) representativeness metrics based on Machine Learning (ML) Fairness Research. Visualizations and statistical tests based on proposed metrics enable researchers and physicians to rapidly visualize and assess subgroup representation in RCTs. The approach enables users to determine overrepresentation, underrepresentation, and exclusion of subgroups indicating potential limitations of RCTs. The method could help support generalizability evaluation of existing RCT cohorts, enrollment target decisions for new RCTs, and monitoring of RCT recruitment, ultimately contributing to more equitable public health outcomes.
 
 ### What's the problem?
 Within the field of RCT research, there has been ongoing concern that RCTs which lack a diversity of participants may not provide clear evidence of efficacy and safety for new interventions in underrepresented or missing subpopulations. To date, there has been insufficient means to quantify the inequity between those who get enrolled into RCTs and the broader population who could benefit from the new intervention.
@@ -40,8 +40,8 @@ You can run the example studies on [**RCT Representativeness Visualization (Pape
 
 The tool can
 1. Measure representativeness of any subgroup of interest in randomized clinical trials
-2. Visualize misrepresentation/inequity for subgroups
-3. Compare inequities within/among studies
+2. Visualize representation for subgroups
+3. Compare representation within/among studies
 
 The R codes are available in the folder **Visualization Codes**.
 
@@ -53,7 +53,7 @@ What things you need to install the software and how to install them:
 
 
 ## Example RCTs
-We apply the proposed RCT representativeness metrics to three landmark clinical trials released in the last decade: Action to Control Cardiovascular Risk in Diabetes (**ACCORD**), Antihypertensive and Lipid-Lowering Treatment to Prevent Heart Attack Trial(**ALLHAT**), and Systolic Blood Pressure Intervention Trial (**SPRINT**). All patient data are obtained through the [Biologic Specimen and Data Repositories Information Coordinating Center (BioLINCC)](https://biolincc.nhlbi.nih.gov/home/).
+We apply the proposed RCT representativeness metrics to three landmark clinical trials released in the last decade: Action to Control Cardiovascular Risk in Diabetes (**ACCORD**), Antihypertensive and Lipid-Lowering Treatment to Prevent Heart Attack Trial(**ALLHAT**), and Systolic Blood Pressure Intervention Trial (**SPRINT**). All participant data are obtained through the [Biologic Specimen and Data Repositories Information Coordinating Center (BioLINCC)](https://biolincc.nhlbi.nih.gov/home/).
 
 ## RCT Representativeness Visualization (Paper Supplement)
 
@@ -64,7 +64,7 @@ We apply the proposed RCT representativeness metrics to three landmark clinical 
 <em>The distributions of subgroups defined over age and race/ethnicity in both target population and ACCORD</em>
 </p>
 
-It demonstrates the distributions of patients from different age and race/ethnicity groups in the RCT ACCORD and the target population. This figure clearly identifies that young patients are missing from the clinical trial. Also, the higher red bin shows that the subgroup may be overrepresented in the RCT (e.g. non-Hispanic white subjects age 45-64), while the higher green bin shows that the subgroup has the potential to be underrepresented in the RCT (e.g. Hispanic participants age 45-64). The wider green bin means that the subgroup is missing from the clinical trial (e.g. non-Hispanic white patients age 18-44).
+It demonstrates the distributions of participants from different age and race/ethnicity groups in the RCT ACCORD and the target population. This figure clearly identifies that young participants are missing from the clinical trial. Also, the higher red bin shows that the subgroup may be overrepresented in the RCT (e.g. non-Hispanic white subjects age 45-64), while the higher green bin shows that the subgroup has the potential to be underrepresented in the RCT (e.g. Hispanic participants age 45-64). The wider green bin means that the subgroup is missing from the clinical trial (e.g. non-Hispanic white participants age 18-44).
 
 
 <p align="center">
