@@ -211,7 +211,7 @@ sun_plot_process<-function(function_name,subgroup_detail,function_real,cut1,cut2
   
   
   plot(x_subgroup,y_subgroup,
-       main=paste0(function_name, " for ", subgroup_detail),
+       main=paste0(function_name),
        ylab="\u03C4 = Metric Value",xlab ="Observed Rate",
        type="l",col="black",lwd = 1.5,xlim=given_xlimit,ylim=given_ylimit)
   

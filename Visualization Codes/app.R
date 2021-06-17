@@ -98,7 +98,7 @@ server <- function(input, output, session) {
           HTML("<h1 class = 'start-modal'>RCT Representativeness<b><span style = 'color: #990000;'><span style='padding-left:5px; padding-right: 5px;'>Visualization (Paper Supplement)</span></span></b></h1>"),
           div(class="start-modal-copy",
           h2('Evaluate representativeness of clinical trials.\n', class="start-modal"),
-          h2('Compare misrepresentations among studies.\n', class="start-modal"),
+          h2('Compare representations across subgroups among mutliple studies.\n', class="start-modal"),
           h2('Get insights on how to improve the clinical trial and health equity.\n', class="start-modal"),
           actionButton("closeStartModal", "GET STARTED", class = "btn-get-started btn-continue")
         )),
@@ -112,37 +112,37 @@ server <- function(input, output, session) {
       column(12,
                   tags$div(
                    class = "eqiutyMetrics",
-                   h2("Paper: Quantifying Representativeness in Randomized Clinical Trials using Machine Learning Fairness Metrics"),
-                   h4("Objective"),
-                   h5("We formulate representativeness of randomized clinical trials (RCTs) as a machine learning (ML) fairness problem, derive new representation metrics, and deploy them in visualization tools which help users identify subpopulations that are underrepresented in RCT cohorts with respect to national or community-based target populations."),   
-                   h4("Materials and Methods"),
-                   h5("We represent RCT cohort assignments as random binary classification fairness problems, and then prove how ML fairness metrics based on RCT enrollment fraction can be efficiently calculated using easily computed rates of subpopulations in RCT cohorts and target populations.
-                       We propose standardized version of these metrics and deploy them in an interactive tool to analyze three RCTs with respect to type-2 diabetes and hypertension target populations in the National Health and Nutrition Examination Survey."),
-                   h4("Results"),
-                   h5("We demonstrate how the proposed metrics and associated statistics enables users to rapidly examine representativeness of all subpopulations in the RCT defined by a set of categorical traits (e.g. sex, race, ethnicity, smokers, and blood pressure) with respect to target populations. "),
-                   h4("Discussion"),
-                   h5("The normalized metrics provide an intuitive common scale for evaluating representation across subgroups with vastly different enrollment fractions and rates in RCT cohorts. The metrics are beneficial complements to existing approaches (e.g. enrollment fractions and GIST) which are used to identify generalizability and health equity of RCTs."), 
-                   h4("Conclusion"),
-                   h5("By quantifying the gaps between RCTs and target populations, the proposed methods can support generalizability evaluation of existing RCTs, design of new RCTs, and the monitoring of RCT recruitment, ultimately contributing to more equitable public health outcomes."),
+                   h1("Paper: Quantifying Representativeness in Randomized Clinical Trials using Machine Learning Fairness Metrics"),
+                   h3("         "),
+                   h3("Objective"),
+                   h5("We formulate population representativeness of randomized clinical trials (RCTs) as a machine learning (ML) fairness problem, derive new representation metrics, and deploy them in visualization tools which help users identify subpopulations that are underrepresented in RCT cohorts with respect to national, community-based or health system target populations."),   
+                   h3("Materials and Methods"),
+                   h5("We represent RCT cohort enrollment as random binary classification fairness problems, and then show how ML fairness metrics based on enrollment fraction can be efficiently calculated using easily computed rates of subpopulations in RCT cohorts and target populations. We propose standardized versions of these metrics and deploy them in an interactive tool to analyze three RCTs with respect to type-2 diabetes and hypertension target populations in the National Health and Nutrition Examination Survey (NHANES)."),
+                   h3("Results"),
+                   h5("We demonstrate how the proposed metrics and associated statistics enable users to rapidly examine representativeness of all subpopulations in the RCT defined by a set of categorical traits (e.g., sex, race, ethnicity, smoker status, and blood pressure) with respect to target populations."),
+                   h3("Discussion"),
+                   h5("The normalized metrics provide an intuitive standardized scale for evaluating representation across subgroups, which may have vastly different enrollment fractions and rates in RCT study cohorts. The metrics are beneficial complements to other approaches (e.g., enrollment fractions and GIST) used to identify generalizability and health equity of RCTs."), 
+                   h3("Conclusion"),
+                   h5("By quantifying the gaps between RCT and target populations, the proposed methods can support generalizability evaluation of existing RCT cohorts, enrollment target decisions for new RCTs, and monitoring of RCT recruitment, ultimately contributing to more equitable public health outcomes."),
                    
                    HTML("<p class = 'zip'>The paper is available <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity/tree/master/Papers' target = '_blank'>online.</a>"),
                   ),
                  tags$div(
                    class = "eqiutyMetrics",
                    h2(class="zip", "Instructions"),
-                   h4("Step 1: Choose an RCT for Analysis"),
+                   h3("Step 1: Choose an RCT for Analysis"),
                    h5("Users should select one sample RCT from the three available studies (ACCORD for type-II diabetes, ALLHAT for hypertension, and SPRINT for hypertension) that they would like to explore. For the task of comparative analysis, multiple RCTs with the same target population can be selected to compare."),
-                   h4("Step 2: Select the Target Population"),
-                   h5("The target population of interest for our sample RCTs will be automatically selected according to the features of RCTs and the user-selected patient attributes."),
-                   h4("Step 3: Select the Objective and Attributes"),
+                   h3("Step 2: Select the Target Population"),
+                   h5("The target population of interest for our sample RCTs will be automatically selected according to the features of RCTs and the user-selected participant attributes."),
+                   h3("Step 3: Select the Objective and Attributes"),
                    h5("(3A) Select a Task: We implement three functions to perform representativeness evaluation of RCTs. 
-                   'Representativeness Evaluation' is designed to measures the representativeness level of RCT subgroups with selected patient characteristics;
-                   'Study vs Target Population' helps to compare the distribution of patient characteristics between the RCT and target population;
+                   'Representativeness Evaluation' is designed to measures the representativeness level of RCT subgroups with selected participant characteristics;
+                   'Study vs Target Population' helps to compare the distribution of participant characteristics between the RCT and target population;
                    'Comparative Study of Representativeness' enables users to compare the representativeness score of a same set of characteristics among different RCTs. 
                       Users can perform one function each time."),
                    h5("(3B) Choose Attributes for Evaluation: The selected attributes are regarded as the protected attributes to perform the evaluation."),
-                   h5("(3C) Variable Order: Users can rearrange the order of patients attributes through drag and drop the attributes shown in the sidebar to generate different sunburst plots. The attributes will be ordered from the inner to the outer rings on the sunburst plots."),
-                   h4("Step 4: Select a Metric and its Settings"),
+                   h5("(3C) Variable Order: Users can rearrange the order of participant attributes through drag and drop the attributes shown in the sidebar to generate different sunburst plots. The attributes will be ordered from the inner to the outer rings on the sunburst plots."),
+                   h3("Step 4: Select a Metric and its Settings"),
                    h5("(4A) Select a Metric: Users can select one of our example representativeness metrics for analysis."),
                    h5("(4B) Set Lower Threshold: This value is used to distinguish ranges of metric values from inequitable representation to equitable representation of subgroups. It is usually determined by the published literatures."),
                    h5("(4C) Set Upper Threshold: We additionally design this value to distinguish ranges of metric values from highly inequitable representation to inequitable representation of subgroups. It can be selected based on different study scenarios/goals by users."),
@@ -179,8 +179,8 @@ server <- function(input, output, session) {
                shinyInput_label_embed(
                  shiny_iconlink() %>%
                    bs_embed_popover(
-                     title = "Tasks", content = "'Representativeness Evaluation' measures the representativeness level of RCT subgroups with selected patient characteristics;
-                     'Study vs Target Population' compares the distribution of patient characteristics between the RCT and target population;
+                     title = "Tasks", content = "'Representativeness Evaluation' measures the representativeness level of RCT subgroups with selected participant characteristics;
+                     'Study vs Target Population' compares the distribution of participant characteristics between the RCT and target population;
                      'Comparative Study of Representativeness' compares the representativeness score of a same set of characteristics among different RCTs", placement = "left"
                    )
                )
@@ -283,8 +283,8 @@ server <- function(input, output, session) {
       column(12,
         tags$div(
           style="padding-bottom: 50px;background-color: #ffffff;padding-left: 15px;padding-right: 15px;padding-top: 50px;margin-bottom: 20px;",
-          h2("Comparison of Patient Characterisitcs between the RCT and the Target Population"),
-          h5("Please select the patient characteristics in the sidebar to explore the multi-characteristics subgroups distribution"),
+          h2("Comparison of Participant Characterisitcs between the RCT and the Target Population"),
+          h5("Please select the participant characteristics in the sidebar to explore the multi-characteristics subgroups distribution"),
           plotlyOutput(outputId = "comparePlot"),
         ),
         tags$div(
@@ -292,13 +292,13 @@ server <- function(input, output, session) {
           class = "graphwrapper",
           tags$span(
             style="display:inline-block; width:49%",
-            h2("Summary of Patient Characterisitcs in the RCT"),
+            h2("Summary of Participant Characterisitcs in the RCT"),
             h5("The statistics match the information presented in the above plot"),
             DT::dataTableOutput("summary_ct")
           ),
           tags$span(
             style="display:inline-block; width:49%",
-            h2("Summary of Patient Characterisitcs in the Target Population"),
+            h2("Summary of Participant Characterisitcs in the Target Population"),
             h5("The statistics match the information presented in the above plot"),
             DT::dataTableOutput("summary_br")
           )
@@ -328,6 +328,7 @@ server <- function(input, output, session) {
                  actionButton("reset_di", "resize plot"),
                  h5("Please click 'resize plot' if you want to go back to the original plot after zoom"),
                  h4("Brush and double-click to zoom"),
+                 h5(paste0("Selected Subgroup: ",generate_click_subgroup()$ids)),
                  plotOutput("sun_plot_di",
                             dblclick = "sun_plot_di_dblclick",
                             brush = brushOpts(
@@ -794,7 +795,7 @@ server <- function(input, output, session) {
             plot.title = element_text(size = 14, face = "bold"),
             text=element_text(size=8))+
       labs(
-        title="U.S. Patients Distribution vs Clinical Trial Patients Distribution",
+        title="U.S. Target Population Distribution vs Clinical Trial Population Distribution",
         x="Subgroup Characteristics",
         y="Percentage of Subgroup"
       )
