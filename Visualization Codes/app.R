@@ -49,8 +49,8 @@ ui <- dashboardPage(skin = "black", title = "RCT Representativeness Visualizatio
                       tags$script(HTML('
          $(document).ready(function() {
                      $(\'head\').append(\'<link rel="stylesheet" href="spread-style.css" type="text/css" />\');
-            $("header").find("nav").append(\'<div class="clinic title">RCT Representativeness <b><span style = "color: #990000;"><span style="padding-left:2px; padding-right: 2px;">Visualization (Paper Supplement)</span></span></b></div>\');
-             // $(".sidebar-toggle").insertBefore(".tab-content");
+$("header").find("nav").append(\'<div class="clinic title" style="font-size: 1.8em; vertical-align: middle">RCT Representativeness <b><span style = "color: #990000;"><span style="padding-left:2px; padding-right: 2px;">Visualization (Paper Supplement)</span></span></b></div>\');
+// $(".sidebar-toggle").insertBefore(".tab-content");
           })
        ')),
                       
@@ -98,7 +98,7 @@ server <- function(input, output, session) {
       showModal(modalDialog(
         tags$div(
           class = "ctrial modal-container start-modal",
-          HTML("<h1 class = 'ctrial modal start-modal'>RCT Representativeness<b><span style = 'color: #990000;'><span style='padding-left:5px; padding-right: 5px;'>Visualization (Paper Supplement)</span></span></b></h1>"),
+          HTML("<h1 class = 'start-modal'>RCT Representativeness<b><span style = 'color: #990000;'><span style='padding-left:5px; padding-right: 5px;'>Visualization (Paper Supplement)</span></span></b></h1>"),
           div(class="ctrial modal-body start-modal-copy",
           h2('Evaluate representativeness of clinical trials.\n', class="start-modal"),
           h2('Compare representations across subgroups among mutliple studies.\n', class="start-modal"),
@@ -157,7 +157,7 @@ server <- function(input, output, session) {
                   
                   actionButton(inputId = "continue2main", label = "Continue", class="btn-continue", style="margin: 5% 0 5% 0")
 
-            ) 
+            ), 
             tags$div(
                     class = "modal-footer",
                     HTML("<p class = 'zip'>For more information about the project, please see the <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity' target = '_blank'> GitHub repository.</a>"),
