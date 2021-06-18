@@ -26,8 +26,11 @@ ui <- dashboardPage(skin = "black", title = "RCT Representativeness Visualizatio
                         uiOutput("orderInputs"),
                         uiOutput("settingsInputs"),
                         uiOutput("metricInputs"),
-                        strong("Color Reference for Representativeness"),
-                        tags$img(src = "color.png")
+                        tags$div(
+                          class = "graphic sidebar key",
+                          strong("Color Reference for Representativeness"),
+                          tags$img(src = "color.png")
+                        )
 
                       )
                     ),
@@ -94,9 +97,9 @@ server <- function(input, output, session) {
     if (showBackgroundUploader()) {
       showModal(modalDialog(
         tags$div(
-          class = "start-modal",
-          HTML("<h1 class = 'start-modal'>RCT Representativeness<b><span style = 'color: #990000;'><span style='padding-left:5px; padding-right: 5px;'>Visualization (Paper Supplement)</span></span></b></h1>"),
-          div(class="start-modal-copy",
+          class = "ctrial modal-container start-modal",
+          HTML("<h1 class = 'ctrial modal start-modal'>RCT Representativeness<b><span style = 'color: #990000;'><span style='padding-left:5px; padding-right: 5px;'>Visualization (Paper Supplement)</span></span></b></h1>"),
+          div(class="ctrial modal-body start-modal-copy",
           h2('Evaluate representativeness of clinical trials.\n', class="start-modal"),
           h2('Compare representations across subgroups among mutliple studies.\n', class="start-modal"),
           h2('Get insights on how to improve the clinical trial and health equity.\n', class="start-modal"),
@@ -110,52 +113,57 @@ server <- function(input, output, session) {
       shinyjs::addClass(selector = "body", class = "sidebar-collapse")
 
       column(12,
+
+            tags$div(
+
+
+                    tags$div(
+                    class = "eqiutyMetrics",
+                    h2("Paper: Quantifying Representativeness in Randomized Clinical Trials using Machine Learning Fairness Metrics"),
+                    h3("Objective"),
+                    p("We formulate population representativeness of randomized clinical trials (RCTs) as a machine learning (ML) fairness problem, derive new representation metrics, and deploy them in visualization tools which help users identify subpopulations that are underrepresented in RCT cohorts with respect to national, community-based or health system target populations."),   
+                    h3("Materials and Methods"),
+                    p("We represent RCT cohort enrollment as random binary classification fairness problems, and then show how ML fairness metrics based on enrollment fraction can be efficiently calculated using easily computed rates of subpopulations in RCT cohorts and target populations. We propose standardized versions of these metrics and deploy them in an interactive tool to analyze three RCTs with respect to type-2 diabetes and hypertension target populations in the National Health and Nutrition Examination Survey (NHANES)."),
+                    h3("Results"),
+                    p("We demonstrate how the proposed metrics and associated statistics enable users to rapidly examine representativeness of all subpopulations in the RCT defined by a set of categorical traits (e.g., sex, race, ethnicity, smoker status, and blood pressure) with respect to target populations."),
+                    h3("Discussion"),
+                    p("The normalized metrics provide an intuitive standardized scale for evaluating representation across subgroups, which may have vastly different enrollment fractions and rates in RCT study cohorts. The metrics are beneficial complements to other approaches (e.g., enrollment fractions and GIST) used to identify generalizability and health equity of RCTs."), 
+                    h3("Conclusion"),
+                    p("By quantifying the gaps between RCT and target populations, the proposed methods can support generalizability evaluation of existing RCT cohorts, enrollment target decisions for new RCTs, and monitoring of RCT recruitment, ultimately contributing to more equitable public health outcomes."),
+                    
+                    HTML("<p class = 'zip'>The paper is available <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity/tree/master/Papers' target = '_blank'>online.</a>"),
+                    ),
                   tags$div(
-                   class = "eqiutyMetrics",
-                   h1("Paper: Quantifying Representativeness in Randomized Clinical Trials using Machine Learning Fairness Metrics"),
-                   h3("         "),
-                   h3("Objective"),
-                   h5("We formulate population representativeness of randomized clinical trials (RCTs) as a machine learning (ML) fairness problem, derive new representation metrics, and deploy them in visualization tools which help users identify subpopulations that are underrepresented in RCT cohorts with respect to national, community-based or health system target populations."),   
-                   h3("Materials and Methods"),
-                   h5("We represent RCT cohort enrollment as random binary classification fairness problems, and then show how ML fairness metrics based on enrollment fraction can be efficiently calculated using easily computed rates of subpopulations in RCT cohorts and target populations. We propose standardized versions of these metrics and deploy them in an interactive tool to analyze three RCTs with respect to type-2 diabetes and hypertension target populations in the National Health and Nutrition Examination Survey (NHANES)."),
-                   h3("Results"),
-                   h5("We demonstrate how the proposed metrics and associated statistics enable users to rapidly examine representativeness of all subpopulations in the RCT defined by a set of categorical traits (e.g., sex, race, ethnicity, smoker status, and blood pressure) with respect to target populations."),
-                   h3("Discussion"),
-                   h5("The normalized metrics provide an intuitive standardized scale for evaluating representation across subgroups, which may have vastly different enrollment fractions and rates in RCT study cohorts. The metrics are beneficial complements to other approaches (e.g., enrollment fractions and GIST) used to identify generalizability and health equity of RCTs."), 
-                   h3("Conclusion"),
-                   h5("By quantifying the gaps between RCT and target populations, the proposed methods can support generalizability evaluation of existing RCT cohorts, enrollment target decisions for new RCTs, and monitoring of RCT recruitment, ultimately contributing to more equitable public health outcomes."),
-                   
-                   HTML("<p class = 'zip'>The paper is available <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity/tree/master/Papers' target = '_blank'>online.</a>"),
+                    class = "eqiutyMetrics",
+                    h2(class="zip", "Instructions"),
+                    h3("Step 1: Choose an RCT for Analysis"),
+                    p("Users should select one sample RCT from the three available studies (ACCORD for type-II diabetes, ALLHAT for hypertension, and SPRINT for hypertension) that they would like to explore. For the task of comparative analysis, multiple RCTs with the same target population can be selected to compare."),
+                    h3("Step 2: Select the Target Population"),
+                    p("The target population of interest for our sample RCTs will be automatically selected according to the features of RCTs and the user-selected participant attributes."),
+                    h3("Step 3: Select the Objective and Attributes"),
+                    p("(3A) Select a Task: We implement three functions to perform representativeness evaluation of RCTs. 
+                    'Representativeness Evaluation' is designed to measures the representativeness level of RCT subgroups with selected participant characteristics;
+                    'Study vs Target Population' helps to compare the distribution of participant characteristics between the RCT and target population;
+                    'Comparative Study of Representativeness' enables users to compare the representativeness score of a same set of characteristics among different RCTs. 
+                        Users can perform one function each time."),
+                    p("(3B) Choose Attributes for Evaluation: The selected attributes are regarded as the protected attributes to perform the evaluation."),
+                    p("(3C) Variable Order: Users can rearrange the order of participant attributes through drag and drop the attributes shown in the sidebar to generate different sunburst plots. The attributes will be ordered from the inner to the outer rings on the sunburst plots."),
+                    h3("Step 4: Select a Metric and its Settings"),
+                    p("(4A) Select a Metric: Users can select one of our example representativeness metrics for analysis."),
+                    p("(4B) Set Lower Threshold: This value is used to distinguish ranges of metric values from inequitable representation to equitable representation of subgroups. It is usually determined by the published literatures."),
+                    p("(4C) Set Upper Threshold: We additionally design this value to distinguish ranges of metric values from highly inequitable representation to inequitable representation of subgroups. It can be selected based on different study scenarios/goals by users."),
+                    p("(4D) Set Significance Threshold: This value is the minimum significant difference between RCT and target population subgroup rates that is considered as an equitable representation.")
                   ),
-                 tags$div(
-                   class = "eqiutyMetrics",
-                   h2(class="zip", "Instructions"),
-                   h3("Step 1: Choose an RCT for Analysis"),
-                   h5("Users should select one sample RCT from the three available studies (ACCORD for type-II diabetes, ALLHAT for hypertension, and SPRINT for hypertension) that they would like to explore. For the task of comparative analysis, multiple RCTs with the same target population can be selected to compare."),
-                   h3("Step 2: Select the Target Population"),
-                   h5("The target population of interest for our sample RCTs will be automatically selected according to the features of RCTs and the user-selected participant attributes."),
-                   h3("Step 3: Select the Objective and Attributes"),
-                   h5("(3A) Select a Task: We implement three functions to perform representativeness evaluation of RCTs. 
-                   'Representativeness Evaluation' is designed to measures the representativeness level of RCT subgroups with selected participant characteristics;
-                   'Study vs Target Population' helps to compare the distribution of participant characteristics between the RCT and target population;
-                   'Comparative Study of Representativeness' enables users to compare the representativeness score of a same set of characteristics among different RCTs. 
-                      Users can perform one function each time."),
-                   h5("(3B) Choose Attributes for Evaluation: The selected attributes are regarded as the protected attributes to perform the evaluation."),
-                   h5("(3C) Variable Order: Users can rearrange the order of participant attributes through drag and drop the attributes shown in the sidebar to generate different sunburst plots. The attributes will be ordered from the inner to the outer rings on the sunburst plots."),
-                   h3("Step 4: Select a Metric and its Settings"),
-                   h5("(4A) Select a Metric: Users can select one of our example representativeness metrics for analysis."),
-                   h5("(4B) Set Lower Threshold: This value is used to distinguish ranges of metric values from inequitable representation to equitable representation of subgroups. It is usually determined by the published literatures."),
-                   h5("(4C) Set Upper Threshold: We additionally design this value to distinguish ranges of metric values from highly inequitable representation to inequitable representation of subgroups. It can be selected based on different study scenarios/goals by users."),
-                   h5("(4D) Set Significance Threshold: This value is the minimum significant difference between RCT and target population subgroup rates that is considered as an equitable representation.")
-                 ),
-             
-                  tags$div(
-                   class = "modal-footer",
-                   HTML("<p class = 'zip'>For more information about the project, please see the <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity' target = '_blank'> GitHub repository.</a>"),
-                   ),
-                 
+                  
                   actionButton(inputId = "continue2main", label = "Continue", class="btn-continue", style="margin: 5% 0 5% 0")
-             )
+
+            ) 
+            tags$div(
+                    class = "modal-footer",
+                    HTML("<p class = 'zip'>For more information about the project, please see the <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity' target = '_blank'> GitHub repository.</a>"),
+              ),
+                 
+        )
 
 
     }
