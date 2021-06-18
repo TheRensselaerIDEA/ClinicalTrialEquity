@@ -1184,3 +1184,8 @@ h1 .ctrialP{
 .main-header .navbar{
   margin-left: 0 !important; 
 }
+
+.graphic .sidebar{
+  width: 95%; 
+  margin: auto; 
+}
