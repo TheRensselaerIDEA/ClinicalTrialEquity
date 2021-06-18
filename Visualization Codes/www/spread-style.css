@@ -179,9 +179,8 @@ img {
   
 }
 
-/* .title-text {
+.title-text {
   font-family: Source Sans Pro;
- 
   color: #222222;
   text-decoration: none solid rgb(34, 34, 34);
   text-align: left;
@@ -191,29 +190,28 @@ img {
   line-height: 100%;
   padding-right: 3%;
   margin-right: 1%;
-} */
-
-.title-rside {
-  float:right;
-
 }
+/* 
+.title-rside {
+  float:right; */
 
-/* .title-lside {
+
+.title-lside {
   float:left;
-  font-size:2.3em; */
+  font-size:2.3em; 
   /* margin-top:10px; */
-  /* margin-bottom:0;
-  padding-bottom:0; */
+  margin-bottom:0;
+  padding-bottom:0;
   /* padding-left:30px; */ 
-  /* width: 100%;
+  width: 100%;
   position:relative;
   top:-50px;
   height:0;
   text-align:center;
 
-} */
+}
 
-/*
+
 
 .title-text {
   font-family: Source Sans Pro;
@@ -1150,7 +1148,7 @@ div.zip-upload.form-group.shiny-input-container:not(.shiny-input-container-inlin
   padding: 4% 0; 
 }
 
-h1 .ctrialP{
+h1 .ctrial{
   font-size: 2.0em; 
   line-height: 1.5em;
 }
@@ -1188,4 +1186,9 @@ h1 .ctrialP{
 .graphic .sidebar{
   width: 95%; 
   margin: auto; 
+}
+
+.clinic .title{
+  font-size:1.8em; 
+  vertical-align: middle;
 }

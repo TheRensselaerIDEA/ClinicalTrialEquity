@@ -49,7 +49,7 @@ ui <- dashboardPage(skin = "black", title = "RCT Representativeness Visualizatio
                       tags$script(HTML('
          $(document).ready(function() {
                      $(\'head\').append(\'<link rel="stylesheet" href="spread-style.css" type="text/css" />\');
-            $("header").find("nav").append(\'<div class="title-text title-lside">RCT Representativeness <b><span style = "color: #990000;"><span style="padding-left:2px; padding-right: 2px;">Visualization (Paper Supplement)</span></span></b></div>\');
+            $("header").find("nav").append(\'<div class="clinic title">RCT Representativeness <b><span style = "color: #990000;"><span style="padding-left:2px; padding-right: 2px;">Visualization (Paper Supplement)</span></span></b></div>\');
              // $(".sidebar-toggle").insertBefore(".tab-content");
           })
        ')),
