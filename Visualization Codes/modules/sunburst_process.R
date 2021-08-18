@@ -111,9 +111,18 @@ generate_sunburst_df<-function(background_df,variables_list,user_data_analysis,s
   new_df$EquityValue<- mapply(signif,  new_df$EquityValue,digits = 3)
   new_df$Observed_Rate<- mapply(signif,  new_df$Observed_Rate,digits = 3)
   new_df$Ideal_Rate<- mapply(signif,  new_df$Ideal_Rate,digits = 3)
-  
+  new_df$TextColors<- mapply(colorpicker_text,new_df$EquityColors)
   return(new_df)
 }
+
+
+colorpicker_text <- function(z){
+  if(z == "#54585a"){return("white")}
+  else if(z == "#9ea2a2"){return("white")}
+  else if(z == "#ab2328"){return("white")}
+  else {return("black")}
+}
+
 
 generate_sunburst_plotly<-function(new_df, given_width = NULL){ 
   plot_ly(data= new_df,source = "sunSource")%>% add_trace(
@@ -123,9 +132,11 @@ generate_sunburst_plotly<-function(new_df, given_width = NULL){
     parents=new_df$parents,
     leaf = list(opacity = 1),
     marker = list(colors = new_df$EquityColors),
+    textfont = list(color = new_df$TextColors),
     #textinfo = "current path+label",
     maxdepth =-1,
     insidetextorientation='radial',
+    hoverlabel = list(font = list(color = new_df$TextColors)),
     #hoverinfo = "current path+label+text",
     hovertext = ~paste(new_df$EquityLable,'</br>','Ideal Rate:', formattable(new_df$Ideal_Rate, digits = 3, format = "f"),'</br>','Observed Rate:', formattable(new_df$Observed_Rate, digits = 3, format = "f"),'</br>','No. of Participants:', new_df$Observed_Number),
     insidetextfont  = 2)%>% 
@@ -193,6 +204,7 @@ sun_plot_process<-function(function_name,subgroup_detail,function_real,cut1,cut2
     print("Insufficient Background Information !")
     return(NULL)
   }
+  
   x_subgroup <- seq(0,1,seg_length)
   
   segs<-segments_calculation(cut1,cut2,cut3,cut4,alpha_subgroup,function_real,seg_length)
@@ -239,31 +251,39 @@ sun_plot_process<-function(function_name,subgroup_detail,function_real,cut1,cut2
           col = "#a5b0cb")
   polygon(x = c(x_subgroup[x_vert4:last_index],1, x_subgroup[x_vert4]), 
           y = c(y_subgroup[x_vert4:last_index],y_limit_user,y_limit_user ),
-          col = "#00205b")
+          col = "#667ba2")
   
   if (whether_equitable == "Equitable(p)"){
     abline(v = x_subgroup[round((x_vert2+x_vert3)/2)],col= "#878080", lwd=3, lty=2)
-    text(x_subgroup[x_vert4]+0.05,1, "RCT Subgroup (p)",cex=1.2, col = "chocolate4" )
+    text(x_subgroup[x_vert4]+0.05,1, "Subgroup\n(Cohort,p)",cex=1, col = "chocolate4" )
   }
   else{
     abline(v = beta_subgroup,col= "chocolate4", lwd=3, lty=2)
-    text(beta_subgroup+0.05,1.5, "RCT Subgroup",cex=1.2, col = "chocolate4")
+    text(beta_subgroup+0.05,2, "Subgroup\n(Cohort)",cex=1, col = "chocolate4")
   }
   
   abline(v = alpha_subgroup,col= "green4", lwd=3, lty=2)
-  text(alpha_subgroup+0.05,0, "Ideal",cex=1.2, col = "green4")
+  text(alpha_subgroup+0.05,1, "Ideal",cex=1, col = "green4")
+  
+  # x_subgroup2 <- seq(0,1,seg_length)
+  # 
+  # y_subgroup2<-Adjusted_Equal_Opportunity(alpha_subgroup,x_subgroup2,TRUE)
+  # 
+  # lines(x_subgroup2, y_subgroup2, col="deeppink1", lty=2,lwd = 3)
+  # text(0.4+0.05,0.5, "Normalized Parity",cex=1.2, col = "deeppink1")
+
   
   legend("bottomright",inset=0.01, title="Representativeness Levels",
-         c("Subgroup Absent in NHANES",
-           "Subgroup Absent in NHANES & RCT",
-           "Subgroup Absent in RCT",
+         c("Subgroup Absent in Target Population",
+           "Subgroup Absent in \nTarget Population & Cohort",
+           "Subgroup Absent in Cohort",
            paste0("Highly Underrepresented (\u03C4<",round(cut1,2),")"),
            paste0("Underrepresented (",round(cut1,2)," \u2264 \u03C4<",round(cut2,2),")"),
-           paste0("Representative (",round(cut2,2),"\u2264 \u03C4<",round(cut3,2)," or p>",round(sig_cut,2),")"),
+           paste0("Representative (",round(cut2,2),"\u2264 \u03C4<",round(cut3,2),"\n or p>",round(sig_cut,2),")"),
            paste0("Overrepresented (",round(cut3,2),"\u2264 \u03C4<",round(cut4,2),")"),
            paste0("Highly Overrepresented (",round(cut4,2),"\u2264\u03C4)")),
-         fill=c("#54585a","#000000","#ab2328","#d58570","#eabcad","#d4e6e8","#a5b0cb","#00205b"), horiz=FALSE, cex=0.75)
-
+         fill=c("#54585a","#9ea2a2","#ab2328","#d58570","#eabcad","#d4e6e8","#a5b0cb","#667ba2"), horiz=FALSE, cex=0.75)
+ 
 }
 
 

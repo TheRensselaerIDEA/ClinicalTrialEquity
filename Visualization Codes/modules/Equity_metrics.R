@@ -156,7 +156,7 @@ add_colors<-function(value, significance_value,significance_threshold, threshold
     return ("#ab2328")
   }
   else if(value == -9999999){
-    return ("#000000")
+    return ("#9ea2a2")
   }
   else if(value == -8888888){
     return ("#54585a")
@@ -172,7 +172,7 @@ add_colors<-function(value, significance_value,significance_threshold, threshold
   }
   else if(value > threshold) {
     if (value > pos_break){
-      return ("#00205b")
+      return ("#667ba2")
     }
     else{
       return ("#a5b0cb")

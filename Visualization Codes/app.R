@@ -125,11 +125,11 @@ server <- function(input, output, session) {
                     h3("Materials and Methods"),
                     p("We represent RCT cohort enrollment as random binary classification fairness problems, and then show how ML fairness metrics based on enrollment fraction can be efficiently calculated using easily computed rates of subpopulations in RCT cohorts and target populations. We propose standardized versions of these metrics and deploy them in an interactive tool to analyze three RCTs with respect to type-2 diabetes and hypertension target populations in the National Health and Nutrition Examination Survey (NHANES)."),
                     h3("Results"),
-                    p("We demonstrate how the proposed metrics and associated statistics enable users to rapidly examine representativeness of all subpopulations in the RCT defined by a set of categorical traits (e.g., sex, race, ethnicity, smoker status, and blood pressure) with respect to target populations."),
+                    p("We demonstrate how the proposed metrics and associated statistics enable users to rapidly examine representativeness of all subpopulations in the RCT defined by a set of categorical traits (e.g., gender, race, ethnicity, smoker status, and blood pressure) with respect to target populations."),
                     h3("Discussion"),
                     p("The normalized metrics provide an intuitive standardized scale for evaluating representation across subgroups, which may have vastly different enrollment fractions and rates in RCT study cohorts. The metrics are beneficial complements to other approaches (e.g., enrollment fractions and GIST) used to identify generalizability and health equity of RCTs."), 
                     h3("Conclusion"),
-                    p("By quantifying the gaps between RCT and target populations, the proposed methods can support generalizability evaluation of existing RCT cohorts, enrollment target decisions for new RCTs, and monitoring of RCT recruitment, ultimately contributing to more equitable public health outcomes."),
+                    p("By quantifying the gaps between RCT and target populations, the proposed methods can support generalizability evaluation of existing RCT cohorts. The ML-inspired methods can be readily applied to identified underrepresented subgroups with respect to any desired source or target populations. Thus, they could potentially be used for enrollment target decisions for new RCTs (if eligibility criteria are included), and monitoring of RCT recruitment, ultimately contributing to more equitable public health outcomes."),
                     
                     HTML("<p class = 'zip'>The paper is available <a href='https://github.com/TheRensselaerIDEA/ClinicalTrialEquity/tree/master/Papers' target = '_blank'>online.</a>"),
                     ),
@@ -1020,19 +1020,19 @@ server <- function(input, output, session) {
   
   colorpicker <- function(z,cut1 = log(1-upperThreshold()),cut2=log(1-lowerThreshold()),cut3=-log(1-lowerThreshold()),cut4=-log(1-upperThreshold())){
     if(is.na(z)){return("white")}
-    else if(z>cut4){return("white")}
+    #else if(z>cut4){return("white")}
     else if(z == -Inf){return("white")}
     else {return("black")}
   }
   
   bgpicker <- function(z,cut1 = log(1-upperThreshold()),cut2=log(1-lowerThreshold()),cut3=-log(1-lowerThreshold()),cut4=-log(1-upperThreshold())){
-    if(is.na(z)){return("black")}
+    if(is.na(z)){return("#9ea2a2")}
     else if(z == -Inf){return("#ab2328")}
     else if(z <= cut1){return("#d58570")}
     else if( z > cut1 & z <= cut2){return("#eabcad")}
     else if( z > cut2 & z <= cut3){return("#d4e6e8")}
     else if( z > cut3 & z <= cut4){return("#a5b0cb")}
-    else if (z>cut4){return("#00205b")}
+    else if (z>cut4){return("#667ba2")}
   }
   
   
