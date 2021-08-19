@@ -74,7 +74,7 @@ It demonstrates the distributions of participants from different age and race/et
 <em>Color representation of representativeness levels</em>
 </p>
 
-In our visualization, dark gray indicates that no people with selected protected attributes exist in the target population; light gray means that the subgroup is missing from both target population and study cohort; dark red represents the absent subgroup from the cohort; light orange and orange point out that some subgroups are not sufficiently represented and may be at risk of being insufficiently recruited into and represented in the clinical trial cohort; on the other hand, light blue and blue identify the potential advantaged subgroups which may make inefficient treatment seem helpful or vice versa; teal shows that the subgroup is equitably represented in the clinical trial. 
+In our visualization, dark gray indicates that no people with selected protected attributes exist in the target population; light gray means that the subgroup is missing from both target population and study cohort; dark red represents the absent subgroup from the cohort; light orange and orange point out that some subgroups are not sufficiently represented and may be at risk of being insufficiently enrolled into and represented in the clinical trial cohort; on the other hand, light blue and blue identify the potential advantaged subgroups which may make inefficient treatment seem helpful or vice versa; teal shows that the subgroup is equitably represented in the clinical trial. 
 
 <p align="center">
   <img width="50%" height="auto" src="Visualizations/color_equity.JPG">
