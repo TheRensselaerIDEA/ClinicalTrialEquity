@@ -9,13 +9,14 @@ Quantify representativeness in randomized clinical trials and provide insights t
 ## Contents
 
 1. [Description](#description)
-1. [Visualization Tool](#visualization-tool)
-1. [Example RCTs](#example-rcts)
-1. [Sample Visualization](#RCT-Representativeness-Visualization-Supplement-2021)
-1. [Statistical Results](#statistical-results)
-1. [Contact](#contact)
-1. [License](#license)
-1. [Acknowledgments](#acknowledgments)
+2. [Visualization Tool](#visualization-tool)
+3. [Example RCTs](#example-rcts)
+4. [Sample Visualization](#RCT-Representativeness-Visualization-Supplement-2021)
+5. [Statistical Results](#statistical-results)
+6. [Data Availability](#data-availability)
+7. [Contact](#contact)
+8. [License](#license)
+9. [Acknowledgments](#acknowledgments)
 
 <!-- ABOUT THE PROJECT -->
 ## Description
