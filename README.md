@@ -111,6 +111,14 @@ Subgroup data of ACCORD, ALLHAT, and SPRINT are summarised with the subgroups' c
 
 The results are available in the folder **Statistical Results for Example Studies** as csv files.
 
+
+## Data Availability 
+Our dataset "Quantifying representativeness in RCTs using ML fairness metrics - Data and codes" are available in the Dryad Digital Repository at https://doi.org/10.5061/dryad.76hdr7sxf. 
+
+The software is being published at Zenodo: https://doi.org/10.5281/zenodo.5348584.
+
+The supplemental information is being published at Zenodo: https://doi.org/10.5281/zenodo.5348586.
+
 <!-- CONTACT -->
 ## Contact
 
